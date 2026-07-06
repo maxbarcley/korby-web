@@ -74,7 +74,14 @@
   .nav .btn{padding:10px 20px;font-size:14px}
   .nav-links a.btn-primary{color:#fff}
   .nav-links a.btn-primary:hover{color:#fff}
-  @media(max-width:720px){.nav-links a.navlink{display:none}}
+  .mobile-nav{display:none}
+  @media(max-width:720px){
+    .nav-links a.navlink{display:none}
+    .mobile-nav{display:flex;justify-content:center;gap:28px;padding-bottom:11px;margin-top:-2px}
+    .mobile-nav a{font-size:13.5px;font-weight:600;letter-spacing:.02em;color:var(--inkSoft)}
+    .mobile-nav a:hover{color:var(--wine)}
+    header.scrolled .mobile-nav{display:none}
+  }
 
   /* ===== HERO — product-forward, layered warm background, animates on load ===== */
   .hero{position:relative;overflow:hidden;background:
@@ -124,17 +131,25 @@
   .floatcard.a{left:-6px;top:120px;animation:float 9s ease-in-out infinite}
   .floatcard.b{right:-10px;bottom:96px;animation:float 8s ease-in-out -1.5s infinite}
   @media(max-width:980px){
-    .hero-grid{grid-template-columns:1fr;text-align:center;min-height:0;padding:36px 0 8px;gap:8px}
+    .hero{padding:0}
+    .hero-grid{grid-template-columns:1fr;text-align:center;min-height:0;padding:28px 0 4px;gap:4px}
     .hero-copy{max-width:none;margin:0 auto}
     .hero .eyebrow,.hero h1,.hero .lead{margin-left:auto;margin-right:auto}
     .hero-cta{align-items:center;margin-top:26px}
     .hero-cta .row{justify-content:center}
-    .stage{min-height:520px;margin-top:4px}
+    .hero-trust{justify-content:center}
+    .stage{min-height:520px;margin-top:0}
   }
-  @media(max-width:520px){
+  @media(max-width:600px){
+    /* trust row: wrap cleanly into centered lines instead of cramming on one */
+    .hero-trust{flex-wrap:wrap;justify-content:center;gap:4px 10px}
+    .hero-trust .avatars,.hero-trust .dot{display:none}
+    .hero-trust>span:not(.avatars):not(.dot){flex:0 0 100%;text-align:center}
+    /* the floating cards clip off-screen at this width — let the phone stand alone */
+    .floatcard{display:none}
     .phone{width:250px}.phone.back{display:none}
-    .floatcard.a{left:-2px;top:70px}.floatcard.b{right:-2px;bottom:70px}
-    .stage .orbit{width:340px;height:340px}
+    .stage{min-height:0;margin-top:8px}
+    .stage .orbit{width:330px;height:330px}
   }
 
   /* Stat strip */
@@ -256,6 +271,11 @@
   .foot-col a{display:block;font-size:14.5px;color:var(--inkSoft);margin-bottom:9px}
   .foot-col a:hover{color:var(--wine)}
   .foot-base{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--inkFaint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media(max-width:600px){
+    footer{padding:44px 0 30px}
+    .foot-grid{flex-direction:column;gap:28px}
+    .foot-cols{gap:40px}
+  }
 
   /* Reveal animations (below the fold, JS-driven) */
   .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
@@ -282,6 +302,11 @@
       <a class="btn btn-primary" href="#get">Join the Beta</a>
     </nav>
   </div>
+  <nav class="mobile-nav wrap">
+    <a href="#insight">Why</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
 </header>
 
 <!-- HERO -->
