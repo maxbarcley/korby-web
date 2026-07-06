@@ -162,7 +162,7 @@
   /* Marquee — a look inside */
   .inside{background:linear-gradient(180deg,var(--oat),var(--ivory));padding-bottom:92px}
   .marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-  .marquee-track{display:flex;gap:26px;width:max-content;animation:scrollx 48s linear infinite}
+  .marquee-track{display:flex;gap:26px;width:max-content;animation:scrollx 66s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
   .marquee .phone{width:196px;flex:0 0 auto}
   @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -271,7 +271,7 @@
 <!-- STAT STRIP -->
 <section class="stats" style="padding:0">
   <div class="wrap stats-grid">
-    <div class="stat reveal"><div class="n" data-count="100" data-suffix="+">0</div><div class="l">hand-picked date ideas</div></div>
+    <div class="stat reveal"><div class="n" data-count="100" data-suffix="+">100+</div><div class="l">hand-picked date ideas</div></div>
     <div class="stat reveal"><div class="n">3</div><div class="l">lists for every dream</div></div>
     <div class="stat reveal"><div class="n">2</div><div class="l">phones, one shared list</div></div>
     <div class="stat reveal"><div class="n">0</div><div class="l">ads &middot; feeds &middot; noise</div></div>
@@ -486,7 +486,7 @@
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
       e.target.classList.add('in');
-      if(e.target.hasAttribute('data-count')) countUp(e.target);
+      var _cn=e.target.matches('[data-count]')?e.target:e.target.querySelector('[data-count]'); if(_cn) countUp(_cn);
       io.unobserve(e.target);
     });
   },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
