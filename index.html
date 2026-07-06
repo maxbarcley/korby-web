@@ -93,12 +93,11 @@
   /* phone stage */
   .stage{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center}
   @media(max-width:880px){.stage{min-height:520px;margin-top:12px}}
-  .phone{position:relative;width:280px;aspect-ratio:9/19.55;background:#08070a;border-radius:46px;padding:7px;box-shadow:0 40px 80px -26px rgba(60,30,40,.6),0 14px 30px -14px rgba(0,0,0,.34);will-change:transform}
-  .phone::before{content:"";position:absolute;inset:-3px;border-radius:49px;z-index:-1;background:linear-gradient(150deg,#e6dfd9 0%,#b7aea8 16%,#7c736e 37%,#4e4744 54%,#807771 72%,#d0c8c2 100%)}
-  .phone .screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:linear-gradient(160deg,var(--surface),var(--oat));display:flex;align-items:center;justify-content:center;text-align:center}
+  .phone{position:relative;width:280px;aspect-ratio:900/1810;background:transparent;filter:drop-shadow(0 30px 38px rgba(60,30,40,.30)) drop-shadow(0 8px 14px rgba(0,0,0,.12));will-change:transform}
+  .phone::after{content:"";position:absolute;inset:0;background:url("iphone-frame.png") center/100% 100% no-repeat;z-index:3;pointer-events:none}
+  .phone .screen{position:absolute;left:3.95%;top:0.95%;width:92.1%;height:98.1%;overflow:hidden;z-index:1;background:#000}
   .phone .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .phone .screen::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,0) 24%,rgba(255,255,255,0) 78%,rgba(255,255,255,.07))}
-  .phone .notch{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:33%;height:23px;background:#050406;border-radius:20px;z-index:4}
+  .phone .notch{display:none}
   .ph-label{padding:0 18px;z-index:1}
   .ph-label .k{font-family:var(--serif);font-size:19px;color:var(--wine);font-weight:600}
   .ph-label .t{font-size:12px;color:var(--inkFaint);margin-top:6px}
