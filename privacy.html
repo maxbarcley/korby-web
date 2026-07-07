@@ -4,134 +4,146 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy · Korby</title>
-  <meta name="description" content="Privacy Policy for the Korby iOS app — the bucket list for couples. GDPR-compliant, EU hosting, no trackers.">
+  <meta name="description" content="Privacy Policy for the Korby iOS app, the shared bucket list for two. No trackers, no ads, no selling of data.">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#241318">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <style>
-    :root{--peach:#f9eed4;--peach-deep:#e89b7b;--ink:#2a2724;--ink-soft:#7a7068;--line:#e6d9c8;--link:#b06b48;}
-    *{box-sizing:border-box;}
-    html{-webkit-text-size-adjust:100%;}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,var(--peach) 0%,#fff7ea 100%);color:var(--ink);line-height:1.6;min-height:100vh;}
-    main{max-width:720px;margin:0 auto;padding:56px 24px 96px;}
-    header h1{font-family:Georgia,"Times New Roman",serif;font-size:36px;font-weight:600;margin:0 0 8px;letter-spacing:-0.5px;}
-    header .meta{color:var(--ink-soft);font-size:14px;}
-    .intro{color:var(--ink-soft);font-size:15px;margin:24px 0 8px;}
-    h2{font-family:Georgia,"Times New Roman",serif;font-size:24px;font-weight:600;margin:44px 0 8px;border-top:1px solid var(--line);padding-top:30px;letter-spacing:-0.3px;}
-    h2:first-of-type{border-top:none;padding-top:0;margin-top:24px;}
-    h3{font-size:18px;font-weight:600;margin:28px 0 6px;}
-    p,ul{margin:12px 0;}ul{padding-left:24px;}li{margin:6px 0;}
-    a{color:var(--link);}
-    code{background:rgba(0,0,0,.06);padding:1px 6px;border-radius:4px;font-size:.92em;}
-    table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;}
-    th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
-    th{background:rgba(255,255,255,.5);}
-    .placeholder{background:#fff3cd;border-left:3px solid #d4a017;padding:8px 12px;font-size:13px;color:#6b4f00;margin:8px 0;border-radius:4px;}
-    footer{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px;text-align:center;}
-    footer a{color:var(--link);}
-    @media(max-width:480px){main{padding:40px 18px 64px;}header h1{font-size:28px;}h2{font-size:20px;}}
+    :root{
+      --ivory:#F3EFE6; --surface:#FCFAF5; --surface2:#ECE7DD;
+      --ink:#2B1B1E; --inkSoft:#6E5B5E; --inkFaint:#8F7D7F;
+      --line:#E2DBCE; --lineSoft:#EAE5DA;
+      --wine:#7A3B4F; --wineDeep:#5E2C3C; --gold:#C9A85C;
+      --serif:'Fraunces',Georgia,'Times New Roman',serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:var(--wine);text-decoration:none}
+    a:hover{color:var(--wineDeep);text-decoration:underline}
+    header.site{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.78);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--lineSoft)}
+    .nav{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    .logo{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--ink)}
+    .logo .heart{color:var(--wine)}
+    .back{font-size:14px;font-weight:600;color:var(--inkSoft);border:1.5px solid var(--line);border-radius:40px;padding:8px 16px;transition:color .2s,border-color .2s}
+    .back:hover{color:var(--wine);border-color:var(--wine);text-decoration:none}
+    main{max-width:760px;margin:0 auto;padding:52px 24px 96px}
+    h1{font-family:var(--serif);font-size:clamp(32px,5vw,40px);font-weight:600;letter-spacing:-.02em;margin:0 0 8px}
+    .meta{color:var(--inkFaint);font-size:14px}
+    .intro{color:var(--inkSoft);font-size:16px;margin:22px 0 8px;max-width:60ch}
+    h2{font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:-.015em;margin:44px 0 10px;border-top:1px solid var(--line);padding-top:30px}
+    h2:first-of-type{border-top:none;padding-top:0;margin-top:28px}
+    h3{font-size:16.5px;font-weight:600;margin:24px 0 6px}
+    p,ul{margin:12px 0;color:var(--ink)}
+    ul{padding-left:22px}
+    li{margin:6px 0}
+    code{background:var(--surface2);padding:1px 6px;border-radius:5px;font-size:.92em}
+    table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0;background:var(--surface);border-radius:12px;overflow:hidden}
+    th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+    th{background:var(--surface2);font-weight:600}
+    .placeholder{background:#f6ecd7;border-left:3px solid var(--gold);padding:8px 12px;font-size:13px;color:#6b5423;margin:8px 0;border-radius:6px}
+    footer.site{max-width:760px;margin:0 auto;padding:0 24px 56px;border-top:1px solid var(--line);color:var(--inkFaint);font-size:13.5px;text-align:center}
+    footer.site .inner{padding-top:26px}
+    footer.site a{color:var(--inkSoft)}
+    @media(max-width:480px){main{padding:36px 18px 64px}}
   </style>
 </head>
 <body>
+<header class="site">
+  <div class="nav">
+    <a class="logo" href="/">Korby <span class="heart">♥</span></a>
+    <a class="back" href="/">&larr; Back to Korby</a>
+  </div>
+</header>
 <main>
-  <header>
-    <h1>Privacy Policy</h1>
-    <div class="meta">Last updated: 2026-06-04</div>
-  </header>
+  <h1>Privacy Policy</h1>
+  <div class="meta">Last updated: July 7, 2026</div>
 
-  <p class="intro">Korby is private and ad-free. We collect only what the app needs to work, never sell your data, and store everything securely in the EU.</p>
+  <p class="intro">Korby is private and ad-free. We collect only what the app needs to work, we never sell your data, and everything you share stays between you and your partner.</p>
 
   <h2>1. Who we are</h2>
-  <p>This privacy policy explains how <strong>Korby</strong> (the "App") processes your personal data. The data controller under the GDPR is:</p>
+  <p>This Privacy Policy explains how <strong>Korby</strong> (the "App") handles your personal information. The App is operated by:</p>
   <p>
-    Trillidium Studio<br>
-    <span class="placeholder">[Address to be filled in before publication]</span><br>
+    Trillidium LLC, a New Mexico limited liability company<br>
     Email: <a href="mailto:support@getkorby.com">support@getkorby.com</a>
   </p>
-  <p>EU representative under Art. 27 GDPR: see section 10.</p>
 
-  <h2>2. What we collect — and why</h2>
-  <p>We only collect data necessary for the App to do its job: give you and your partner a private space to collect, plan, and remember shared experiences.</p>
+  <h2>2. What we collect, and why</h2>
+  <p>We only collect what the App needs to give you and your partner a private space to collect, plan, and remember shared experiences.</p>
   <h3>When you create your account:</h3>
   <ul>
-    <li><strong>Email address</strong> — so you can sign in and recover your account</li>
-    <li><strong>Password</strong> (encrypted, never stored in plain text)</li>
-    <li><strong>Your first name</strong> — shown to both of you in the App</li>
-    <li><strong>Your partner's first name</strong> — entered during onboarding</li>
-    <li><strong>Optional: your anniversary date</strong> — for anniversary reminders</li>
+    <li><strong>Email address</strong>, so you can sign in and recover your account</li>
+    <li><strong>Password</strong>, stored only as a salted hash, never in plain text</li>
+    <li><strong>Your first name</strong>, shown to both of you in the App</li>
+    <li><strong>Your partner's first name</strong>, entered during onboarding</li>
+    <li><strong>Optional: your anniversary date</strong>, for anniversary reminders</li>
   </ul>
   <h3>While you use the App:</h3>
   <ul>
-    <li><strong>Wishes and bucket-list items</strong> — title, category, budget, date, notes, checklists</li>
-    <li><strong>Memories</strong> — title, note, date, photo(s), mood emoji</li>
-    <li><strong>Photos</strong> you upload to memories, items, or as your couple photo</li>
-    <li><strong>Couple ID + pairing code</strong> — a generated 6-character code for the shared view</li>
-    <li><strong>Local notification permission</strong> — purely local to your device, no server push</li>
+    <li><strong>Wishes and bucket-list items</strong>: title, category, budget, date, notes, checklists</li>
+    <li><strong>Memories</strong>: title, note, date, photos, mood</li>
+    <li><strong>Photos</strong> you add to memories, items, or as your couple photo</li>
+    <li><strong>Couple ID and pairing code</strong>: a generated 6-character code that links your two accounts</li>
+    <li><strong>Notification permission</strong>, for local reminders and an optional push when your partner adds a new wish (the notification shows your partner's name, never the wish itself)</li>
+    <li><strong>Device push token</strong>: a pseudonymous Apple identifier stored so that partner notification can reach your device; deleted with your account</li>
   </ul>
-  <h3>What we do NOT collect:</h3>
+  <h3>What we do NOT do:</h3>
   <ul>
     <li>No tracking across other apps or websites</li>
-    <li>No ad trackers, identity-linked analytics, or fingerprinting</li>
-    <li>We don't sell data or share it with advertising networks</li>
+    <li>No ad trackers, no identity-linked analytics, no fingerprinting</li>
+    <li>We do not sell your personal information, and we do not share it with advertising networks</li>
     <li>No access to your contacts, location, or microphone</li>
   </ul>
 
-  <h2>3. Legal basis (GDPR Art. 6)</h2>
+  <h2>3. Payments and subscriptions</h2>
+  <p>Korby offers auto-renewing subscriptions and a one-time lifetime purchase. Current prices are shown in the App Store before you buy. Purchases and billing run exclusively through your Apple account; <strong>Apple is the merchant of record</strong>. We never receive your payment or card details. To manage subscription entitlements we use RevenueCat, which processes a pseudonymous app user ID, your subscription status, and your App Store country.</p>
+
+  <h2>4. Who can see your content</h2>
   <ul>
-    <li><strong>Contract performance (Art. 6(1)(b))</strong> for everything necessary for the App to function.</li>
-    <li><strong>Legitimate interest (Art. 6(1)(f))</strong> for one-time generation of your pairing code.</li>
-    <li><strong>Consent (Art. 6(1)(a))</strong> for optional features like local notifications, photo access, or calendar export. Withdraw anytime via iOS Settings.</li>
+    <li><strong>You</strong>, in your own App.</li>
+    <li><strong>Your partner</strong>, once paired with your code. Every couple's space is private, and database-level access rules enforce this separation.</li>
+    <li><strong>Us as the operator</strong>, only as strictly necessary for maintenance and support. We do not browse your content.</li>
+    <li><strong>Our service providers</strong> (section 5), as technical processors only.</li>
   </ul>
 
-  <h2>4. Payment and subscription data</h2>
-  <p>Korby offers a monthly subscription, a yearly subscription (with a free trial), and a one-time lifetime purchase. The current prices are shown to you in the App Store before purchase. Purchase and billing run exclusively through your Apple App Store account; <strong>Apple is the seller (Merchant of Record)</strong>. We receive no credit-card or payment data. To manage subscription entitlements we use RevenueCat, processing a pseudonymous app user ID, the subscription status (active/trial/expired), and the App Store account country. Legal basis: Art. 6(1)(b) GDPR.</p>
-
-  <h2>5. Who can see your data?</h2>
-  <ul>
-    <li><strong>You</strong> via your own App installation.</li>
-    <li><strong>Your partner</strong>, once paired with your code. Couples are private.</li>
-    <li><strong>Us as the operator</strong>, only as necessary for maintenance and debugging. We don't actively read your content.</li>
-    <li><strong>Our technical service providers</strong> (see section 6) — without active access to your content.</li>
-  </ul>
-
-  <h2>6. Processors / sub-processors</h2>
+  <h2>5. Service providers</h2>
   <table>
-    <tr><th>Provider</th><th>Purpose</th><th>Data location</th></tr>
-    <tr><td>Supabase Inc.</td><td>Database, authentication, photo storage</td><td>EU (eu-central-1, Frankfurt)</td></tr>
-    <tr><td>RevenueCat, Inc.</td><td>Subscription entitlement management</td><td>USA (EU Standard Contractual Clauses)</td></tr>
-    <tr><td>Apple Inc.</td><td>App Store payments, delivery</td><td>USA / EU</td></tr>
-    <tr><td>Resend (Plus Five Five, Inc.)</td><td>System emails (confirmation, password)</td><td><span class="placeholder">[verify region]</span></td></tr>
+    <tr><th>Provider</th><th>Purpose</th><th>Location</th></tr>
+    <tr><td>Supabase Inc.</td><td>Database, authentication, photo storage</td><td>USA (us-east-1, N. Virginia)</td></tr>
+    <tr><td>RevenueCat, Inc.</td><td>Subscription entitlement management</td><td>USA</td></tr>
+    <tr><td>Apple Inc.</td><td>App Store payments and delivery, push notifications</td><td>USA</td></tr>
+    <tr><td>Resend (Plus Five Five, Inc.)</td><td>Account emails (confirmation, password reset)</td><td>USA</td></tr>
   </table>
-  <p>EU Standard Contractual Clauses are in place with US providers; a data-processing agreement under Art. 28 GDPR is concluded with all processors.</p>
+  <p>Each provider processes data on our behalf under a data-processing agreement and has no right to use your content for its own purposes.</p>
 
-  <h2>7. Where is the data stored?</h2>
-  <p>Data is processed via <strong>Supabase Inc.</strong> (DPA per Art. 28 GDPR). Server location: <strong>Frankfurt am Main, Germany</strong> (region <code>eu-central-1</code>). Photo files are stored in the same data center in a private bucket, accessible only to members of the respective couple (row-level security). Supabase sub-processors: <a href="https://supabase.com/legal/dpa">https://supabase.com/legal/dpa</a></p>
+  <h2>6. Where your data is stored</h2>
+  <p>Your data is stored in the <strong>United States</strong> (Supabase, region <code>us-east-1</code>, N. Virginia). Photos live in a private storage bucket that only members of your couple can access. If you use the App from outside the United States, your data is transferred to and processed in the USA; for users in the European Economic Area or the UK, such transfers are safeguarded by Standard Contractual Clauses with our providers.</p>
 
-  <h2>8. How long do we keep your data?</h2>
-  <p>As long as you keep your account. You can delete it in full from the App's settings via "Delete account and all data". This deletes your auth record, all wishes, memories, notes, and photos (from database and storage), and the couple entry. Deletion is immediate and irreversible.</p>
+  <h2>7. How long we keep your data</h2>
+  <p>For as long as you keep your account. You can delete your account at any time in the App under Settings &rarr; "Delete account and all data". This removes your sign-in record, all wishes, memories, notes, and photos, and the couple entry from our live systems immediately; residual copies in encrypted backups are purged automatically within about 30 days.</p>
 
-  <h2>9. Your rights (GDPR)</h2>
-  <ul>
-    <li><strong>Access</strong> (Art. 15), <strong>Rectification</strong> (Art. 16), <strong>Erasure</strong> (Art. 17)</li>
-    <li><strong>Restriction</strong> (Art. 18), <strong>Data portability</strong> (Art. 20)</li>
-    <li><strong>Withdraw consent</strong> (Art. 7(3)) — anytime, prospectively</li>
-    <li><strong>Lodge a complaint with a supervisory authority</strong> (Art. 77)</li>
-  </ul>
-  <p>Send requests to: <a href="mailto:support@getkorby.com">support@getkorby.com</a> or our EU representative (section 10).</p>
+  <h2>8. Your rights</h2>
+  <p>You can access, correct, and delete your data directly in the App, and most of these rights work without contacting anyone: edits are instant, and account deletion is built in. Depending on where you live, you may also have statutory rights to request access to, correction of, deletion of, or a portable copy of your personal information, and the right not to be discriminated against for exercising them. We honor such requests regardless of where you live. If you are in the European Economic Area or the UK, you additionally have the rights provided by the GDPR, including the right to lodge a complaint with a supervisory authority.</p>
+  <p>To exercise any right, email <a href="mailto:support@getkorby.com">support@getkorby.com</a>. We answer within 30 days.</p>
 
-  <h2>10. EU representative (Art. 27 GDPR)</h2>
-  <p>For users in the European Union, an EU representative under Article 27 GDPR will be appointed prior to our EU launch.</p>
-  <p>
-    <span class="placeholder">[EU representative name]</span><br>
-    <span class="placeholder">[Address in the EU]</span><br>
-    Email: <span class="placeholder">[Email of the Art. 27 representative]</span>
-  </p>
+  <h2>9. Security</h2>
+  <p>All traffic between the App and our servers is encrypted in transit (TLS). Content is protected by database-level row security so that only the two members of a couple can read their space. Passwords are stored as salted hashes. No system is perfectly secure, but we design Korby so that the smallest possible amount of data exists in the first place.</p>
 
-  <h2>11. Children</h2>
-  <p>The App is intended for people aged 16 or older. We do not knowingly collect data from children under 16.</p>
+  <h2>10. Children</h2>
+  <p>Korby is intended for people aged 16 or older. We do not knowingly collect data from anyone under 16. If you believe a child has created an account, contact us and we will delete it.</p>
 
-  <h2>12. Changes to this policy</h2>
-  <p>We may update this policy when the App, legal landscape, or our service providers change. For substantial changes we'll notify you on next App launch.</p>
+  <h2>11. Changes to this policy</h2>
+  <p>If we change this policy in a meaningful way, we will update the date above and inform you in the App before the change takes effect. The current version is always available at <a href="https://getkorby.com/privacy.html">getkorby.com/privacy.html</a>.</p>
 
-  <footer>Korby · Trillidium Studio · <a href="mailto:support@getkorby.com">support@getkorby.com</a></footer>
+  <h2>12. Contact</h2>
+  <p>Questions about privacy: <a href="mailto:support@getkorby.com">support@getkorby.com</a></p>
 </main>
+<footer class="site">
+  <div class="inner">
+    Korby &middot; <a href="/terms.html">Terms of Use</a> &middot; <a href="mailto:support@getkorby.com">support@getkorby.com</a>
+  </div>
+</footer>
 </body>
 </html>

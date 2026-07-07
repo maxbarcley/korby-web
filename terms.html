@@ -3,72 +3,123 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Terms of Service · Korby</title>
-  <meta name="description" content="Terms of Service for the Korby iOS app — the private bucket list for couples.">
+  <title>Terms of Use · Korby</title>
+  <meta name="description" content="Terms of Use for the Korby iOS app, the shared bucket list for two.">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#241318">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <style>
-    :root{--peach:#f9eed4;--peach-deep:#e89b7b;--ink:#2a2724;--ink-soft:#7a7068;--line:#e6d9c8;--link:#b06b48;}
-    *{box-sizing:border-box;}
-    html{-webkit-text-size-adjust:100%;}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,var(--peach) 0%,#fff7ea 100%);color:var(--ink);line-height:1.6;min-height:100vh;}
-    main{max-width:720px;margin:0 auto;padding:56px 24px 96px;}
-    header h1{font-family:Georgia,"Times New Roman",serif;font-size:36px;font-weight:600;margin:0 0 8px;letter-spacing:-0.5px;}
-    header .meta{color:var(--ink-soft);font-size:14px;margin-bottom:8px;}
-    .intro{color:var(--ink-soft);font-size:15px;margin:24px 0 8px;}
-    h2{font-family:Georgia,"Times New Roman",serif;font-size:24px;font-weight:600;margin:44px 0 8px;border-top:1px solid var(--line);padding-top:30px;letter-spacing:-0.3px;}
-    h2:first-of-type{border-top:none;padding-top:0;margin-top:24px;}
-    p,ul{margin:12px 0;}ul{padding-left:24px;}li{margin:6px 0;}
-    a{color:var(--link);}
-    .placeholder{background:#fff3cd;border-left:3px solid #d4a017;padding:8px 12px;font-size:13px;color:#6b4f00;margin:8px 0;border-radius:4px;}
-    footer{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px;text-align:center;}
-    footer a{color:var(--link);}
-    @media(max-width:480px){main{padding:40px 18px 64px;}header h1{font-size:28px;}h2{font-size:20px;}}
+    :root{
+      --ivory:#F3EFE6; --surface:#FCFAF5; --surface2:#ECE7DD;
+      --ink:#2B1B1E; --inkSoft:#6E5B5E; --inkFaint:#8F7D7F;
+      --line:#E2DBCE; --lineSoft:#EAE5DA;
+      --wine:#7A3B4F; --wineDeep:#5E2C3C; --gold:#C9A85C;
+      --serif:'Fraunces',Georgia,'Times New Roman',serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:var(--wine);text-decoration:none}
+    a:hover{color:var(--wineDeep);text-decoration:underline}
+    header.site{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.78);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--lineSoft)}
+    .nav{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    .logo{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--ink)}
+    .logo .heart{color:var(--wine)}
+    .back{font-size:14px;font-weight:600;color:var(--inkSoft);border:1.5px solid var(--line);border-radius:40px;padding:8px 16px;transition:color .2s,border-color .2s}
+    .back:hover{color:var(--wine);border-color:var(--wine);text-decoration:none}
+    main{max-width:760px;margin:0 auto;padding:52px 24px 96px}
+    h1{font-family:var(--serif);font-size:clamp(32px,5vw,40px);font-weight:600;letter-spacing:-.02em;margin:0 0 8px}
+    .meta{color:var(--inkFaint);font-size:14px}
+    .intro{color:var(--inkSoft);font-size:16px;margin:22px 0 8px;max-width:60ch}
+    h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.015em;margin:44px 0 10px;border-top:1px solid var(--line);padding-top:30px}
+    h2:first-of-type{border-top:none;padding-top:0;margin-top:28px}
+    p,ul{margin:12px 0;color:var(--ink)}
+    ul{padding-left:22px}
+    li{margin:6px 0}
+    .placeholder{background:#f6ecd7;border-left:3px solid var(--gold);padding:8px 12px;font-size:13px;color:#6b5423;margin:8px 0;border-radius:6px}
+    footer.site{max-width:760px;margin:0 auto;padding:0 24px 56px;border-top:1px solid var(--line);color:var(--inkFaint);font-size:13.5px;text-align:center}
+    footer.site .inner{padding-top:26px}
+    footer.site a{color:var(--inkSoft)}
+    @media(max-width:480px){main{padding:36px 18px 64px}}
   </style>
 </head>
 <body>
+<header class="site">
+  <div class="nav">
+    <a class="logo" href="/">Korby <span class="heart">♥</span></a>
+    <a class="back" href="/">&larr; Back to Korby</a>
+  </div>
+</header>
 <main>
-  <header>
-    <h1>Terms of Service</h1>
-    <div class="meta">Last updated: 2026-06-04</div>
-  </header>
+  <h1>Terms of Use</h1>
+  <div class="meta">Last updated: July 7, 2026</div>
 
-  <p class="intro">These Terms of Service govern your use of Korby, the private bucket list app for couples. Please read them carefully.</p>
+  <p class="intro">These Terms of Use govern your use of Korby, the shared bucket list app for two. By creating an account or using the App, you agree to these Terms.</p>
 
-  <h2>1. Provider and scope</h2>
-  <p>These Terms of Service ("Terms") govern your use of the mobile app "Korby" (the "App"), provided by Trillidium Studio (<span class="placeholder">[legal form, US state]</span>, address see <a href="/legal-notice.html">Legal Notice</a>), hereinafter "we" or "the provider". Only these Terms apply, in the version valid at the time the contract is concluded.</p>
+  <h2>1. Who we are, and what these Terms cover</h2>
+  <p>The mobile application "Korby" (the "App") and the website getkorby.com (together, the "Service") are provided by Trillidium LLC, a New Mexico limited liability company (contact: <a href="mailto:support@getkorby.com">support@getkorby.com</a>), referred to as "Korby", "we", or "us". These Terms form a binding agreement between you and us. If you do not agree with them, do not use the Service.</p>
 
-  <h2>2. Subject of the contract</h2>
-  <p>Korby is a private bucket-list app for couples: collect wishes and plans, discover ideas, capture memories, and sync content between two paired devices. The App is available in English, German, and Spanish.</p>
+  <h2>2. Eligibility</h2>
+  <p>You must be at least 16 years old to use the Service. By using it, you confirm that you meet this requirement and that any information you provide is accurate.</p>
 
-  <h2>3. Conclusion of contract, subscription, and processing via Apple</h2>
-  <p>Paid access is purchased exclusively as an in-app purchase through the Apple App Store. <strong>Apple is the seller (Merchant of Record)</strong> and handles payment, invoicing, and any applicable tax collection. The contract for paid use is concluded between you and us; payment processing is additionally subject to Apple's terms. We receive no payment or credit-card data.</p>
+  <h2>3. The Service</h2>
+  <p>Korby lets two people collect wishes and plans, discover ideas, capture memories with photos and notes, and keep their content synchronized between two paired accounts. Features may evolve over time; we may add, change, or discontinue features as the Service develops, and where a change materially reduces paid functionality, section 12 applies.</p>
 
-  <h2>4. Prices, free trial, and automatic renewal</h2>
-  <p>Korby offers a monthly subscription, a yearly subscription (with a free trial), and a one-time lifetime purchase. The current prices and any free trial are shown to you in the App Store before purchase.</p>
-  <p>A subscription renews automatically for the same period (month or year) at the then-current price unless cancelled at least 24 hours before the end of the current period. Any unused free trial is forfeited upon purchasing a subscription. All prices include any applicable statutory taxes.</p>
+  <h2>4. Your account and pairing</h2>
+  <p>You are responsible for keeping your login credentials confidential and for all activity under your account. Pairing links exactly two accounts into one shared space; anyone you give your pairing code to before pairing may join it, so share the code only with your partner. Either partner may leave the couple at any time in the App's settings.</p>
 
-  <h2>5. Cancellation</h2>
-  <p>You can manage and cancel the subscription at any time in your Apple account's App Store settings (Apple ID → Subscriptions). Cancellation through us is technically not possible because Apple manages billing. The Lifetime purchase is not a subscription and does not expire.</p>
+  <h2>5. Subscriptions, trial, and lifetime purchase</h2>
+  <p>Access to Korby requires a paid plan: an auto-renewing subscription (monthly or yearly, the yearly plan may include a free trial) or a one-time lifetime purchase. One active plan covers both paired partners.</p>
+  <ul>
+    <li><strong>Purchases run exclusively through the Apple App Store.</strong> Apple is the merchant of record and handles payment, invoicing, and applicable taxes. We never receive your payment details.</li>
+    <li><strong>Automatic renewal:</strong> subscriptions renew for the same period at the then-current price unless you cancel at least 24 hours before the end of the current period. Cancel anytime in your Apple ID settings (Settings &rarr; Apple ID &rarr; Subscriptions); we cannot cancel for you because Apple manages billing.</li>
+    <li><strong>Free trial:</strong> if a trial is offered, it converts to a paid subscription at the end of the trial unless cancelled at least 24 hours before the trial ends. Any unused trial time is forfeited when you purchase a plan.</li>
+    <li><strong>Lifetime:</strong> a one-time purchase, not a subscription; it does not renew and does not expire.</li>
+    <li><strong>Refunds</strong> are governed by Apple's App Store policies and handled by Apple. If you are a consumer in a jurisdiction with a statutory right of withdrawal for digital content, that right expires when performance begins with your express consent and acknowledgment, to the extent permitted by law.</li>
+    <li><strong>Price changes</strong> apply only to future billing periods and will be communicated in advance through the App Store mechanism.</li>
+  </ul>
 
-  <h2>6. Right of withdrawal for digital content</h2>
-  <p>For digital products, your right of withdrawal lapses once performance begins with your express consent before the withdrawal period ends and you confirm that you thereby lose your right of withdrawal. Refunds for App Store purchases are governed by Apple's policies and handled directly by Apple.</p>
+  <h2>6. Your content</h2>
+  <p>You keep all rights to the wishes, notes, and photos you add ("Your Content"). You grant us a limited, non-exclusive, royalty-free license to host, store, reproduce, and display Your Content solely to operate the Service for you and your paired partner. This license ends when you delete the content or your account, except for residual backup copies that are purged on schedule (see the <a href="/privacy.html">Privacy Policy</a>).</p>
+  <p>You are responsible for Your Content. You agree not to upload content that is unlawful, infringes someone else's rights (including photos you have no right to use), or is abusive, harassing, or malicious, and not to misuse the Service (including attempting to access other couples' data, probing or disrupting our systems, or reverse engineering the App except where the law permits it). We may remove content or suspend or terminate accounts that violate these Terms.</p>
 
-  <h2>7. User obligations</h2>
-  <p>You are responsible for the content you enter in the App and warrant not to submit unlawful content. Keep your login credentials confidential. The account is intended for people aged 16 and over.</p>
+  <h2>7. Privacy</h2>
+  <p>How we handle personal information is described in our <a href="/privacy.html">Privacy Policy</a>. Using the Service means you have read it.</p>
 
-  <h2>8. Availability and liability</h2>
-  <p>We aim for high availability but do not owe uninterrupted access. We are fully liable for intent and gross negligence. For slightly negligent breach of essential contractual obligations (cardinal duties), liability is limited to the foreseeable damage typical for the contract. Any further liability is excluded. Mandatory statutory liability, in particular under product-liability law and for injury to life, body, or health, remains unaffected.</p>
+  <h2>8. Our intellectual property</h2>
+  <p>The App, its design, branding, curated content, and software are owned by us or our licensors and are protected by intellectual-property laws. We grant you a personal, non-exclusive, non-transferable, revocable license to use the App on Apple devices you own or control, as permitted by the App Store terms. No other rights are granted.</p>
 
-  <h2>9. Changes to these Terms</h2>
-  <p>We may amend these Terms with effect for the future where required for valid reasons (e.g. changed legal situation, new features). We will inform you of material changes in good time within the App.</p>
+  <h2>9. Disclaimer of warranties</h2>
+  <p>The Service is provided <strong>"as is" and "as available"</strong>. To the maximum extent permitted by applicable law, we disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the Service will be uninterrupted, error-free, or that content will never be lost; keep copies of photos that matter to you. Some jurisdictions do not allow certain warranty exclusions, so parts of this section may not apply to you.</p>
 
-  <h2>10. Governing law and consumer protection</h2>
-  <p>The law of the US state of <span class="placeholder">[state]</span> applies, excluding its conflict-of-laws rules. This choice of law applies only insofar as it does not deprive you of the protection of mandatory consumer-protection provisions of your country of residence (in particular EU and German consumer law). Such mandatory protections remain applicable in any case.</p>
+  <h2>10. Limitation of liability</h2>
+  <p>To the maximum extent permitted by applicable law: (a) we are not liable for indirect, incidental, special, consequential, or punitive damages, or for lost profits, data, or goodwill; and (b) our total liability for all claims relating to the Service is limited to the greater of the amount you paid us through the App Store in the twelve months before the claim arose or USD 50.</p>
+  <p>Nothing in these Terms excludes or limits liability that cannot be excluded by law, including liability for intent, gross negligence, fraud, or for death or personal injury caused by negligence. For consumers in the European Union: in the event of slight negligence we are liable only for breaches of essential contractual obligations and only up to the foreseeable damage typical for this kind of contract; mandatory statutory rights remain unaffected.</p>
 
-  <h2>11. Final provisions</h2>
-  <p>Should any provision be invalid, the validity of the remaining provisions remains unaffected; statutory rules apply in addition.</p>
+  <h2>11. Indemnification</h2>
+  <p>To the extent permitted by applicable law, you will indemnify and hold us harmless from claims, damages, and reasonable costs (including attorneys' fees) arising from Your Content or your violation of these Terms or of someone else's rights. This does not apply where you are a consumer in a jurisdiction that restricts such clauses.</p>
 
-  <footer>Korby · Trillidium Studio · <a href="mailto:support@getkorby.com">support@getkorby.com</a></footer>
+  <h2>12. Termination and changes to the Service</h2>
+  <p>You may stop using the Service and delete your account at any time in the App. We may suspend or terminate your access if you materially breach these Terms, if we are required to by law, or if we discontinue the Service; in the case of discontinuation of a paid period, Apple's refund mechanisms apply. Sections that by their nature survive termination (including 6, 8, 9, 10, 11, and 14) survive.</p>
+
+  <h2>13. Apple App Store terms</h2>
+  <p>These Terms are between you and us, not Apple. Apple has no obligation to provide maintenance or support for the App and is not responsible for addressing claims relating to it (including product liability, legal compliance, or IP claims). Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them against you. You represent that you are not located in a country subject to a U.S. government embargo and are not on any U.S. government restricted-party list.</p>
+
+  <h2>14. Governing law and disputes</h2>
+  <p>These Terms are governed by the laws of the State of New Mexico, USA, excluding its conflict-of-laws rules. Before starting any formal dispute, you agree to contact us at <a href="mailto:support@getkorby.com">support@getkorby.com</a> and give us 30 days to resolve the issue informally. Disputes will be resolved on an individual basis; to the extent permitted by applicable law, neither of us will participate in a class action against the other. Exclusive venue for disputes is the state and federal courts located in New Mexico, except that either party may use small-claims court. If you are a consumer in the European Union, this choice of law and venue does not deprive you of the protection of mandatory consumer-protection provisions of your country of residence, and you may also bring proceedings in your home courts.</p>
+
+  <h2>15. Changes to these Terms</h2>
+  <p>We may update these Terms for valid reasons such as legal changes or new features. For material changes we will give you advance notice in the App; continuing to use the Service after the change takes effect means you accept the updated Terms. If you do not accept them, stop using the Service and cancel any subscription via Apple.</p>
+
+  <h2>16. Miscellaneous</h2>
+  <p>If any provision of these Terms is held invalid, the remaining provisions stay in effect, and the invalid provision is replaced by a valid one that best matches its intent. These Terms are the entire agreement between you and us regarding the Service. You may not assign them without our consent; we may assign them to a successor of the Service. Questions: <a href="mailto:support@getkorby.com">support@getkorby.com</a></p>
 </main>
+<footer class="site">
+  <div class="inner">
+    Korby &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="mailto:support@getkorby.com">support@getkorby.com</a>
+  </div>
+</footer>
 </body>
 </html>
