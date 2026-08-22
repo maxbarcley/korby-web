@@ -4,526 +4,581 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Korby: The Shared Bucket List for Two</title>
-<meta name="description" content="Korby is the private app where couples collect the experiences they actually want to have together, plan the next one, and keep every memory. Turn 'someday' into a date."/>
+<meta name="description" content="Korby is a private iPhone app for couples. Collect the things you both want to do, give one a date and a checklist, then keep it as a dated memory. Two phones, one list, no feed."/>
 <meta property="og:title" content="Korby: The Shared Bucket List for Two"/>
-<meta property="og:description" content="Don't let the good years pass on 'someday.' Collect what you want to do together, plan it, and keep every memory, just the two of you."/>
+<meta property="og:description" content="Start with one thing you've both been putting off. Korby is the shared bucket list for two: collect it, put a date on it, keep it as a memory."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://getkorby.com/"/>
 <meta property="og:image" content="https://getkorby.com/korby-screens-overview.jpg"/>
 <meta name="theme-color" content="#241318"/>
+<link rel="canonical" href="https://getkorby.com/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/korby-icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#F3EFE6; --oat:#EDE6DC; --greige:#D8CBC4;
-    --surface:#FCFAF5; --surface2:#ECE7DD;
-    --ink:#2B1B1E; --inkSoft:#6E5B5E; --inkFaint:#8F7D7F;
-    --line:#E2DBCE; --lineSoft:#EAE5DA;
-    --wine:#7A3B4F; --wineDeep:#5E2C3C; --roseWash:#EEDDE1; --plum:#5A364A;
-    --espresso:#241318; --espresso2:#341E23; --cream:#F7EEE3; --creamSoft:#C1ABA5;
-    --gold:#C9A85C; --goldSoft:#E6C98A; --danger:#B84545;
+    --ivory:#F3EFE6; --oat:#EBE4D9; --surface:#FCFAF5;
+    --ink:#2B1B1E; --inkSoft:#614F52; --inkFaint:#6B595D;
+    --line:#DDD5C7; --lineSoft:#E7E1D5;
+    --wine:#7A3B4F; --wineDeep:#5E2C3C; --roseWash:#EEDDE1;
+    --espresso:#241318; --cream:#F7EEE3; --creamSoft:#CDB9B4;
+    --gold:#B98F3E; --goldOnDark:#D9B978;
     --serif:'Fraunces',Georgia,'Times New Roman',serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --r-lg:24px; --r-md:16px; --r-sm:12px;
-    --ease:cubic-bezier(.2,.7,.2,1);
-    --shadow-sm:0 2px 8px -4px rgba(43,27,30,.28);
-    --shadow-md:0 24px 50px -38px rgba(43,27,30,.55);
-    --shadow-lg:0 40px 80px -40px rgba(43,27,30,.5);
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-  a{color:var(--wine);text-decoration:none}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--ink);letter-spacing:-0.018em;line-height:1.06;font-optical-sizing:auto}
-  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);display:inline-flex;align-items:center;gap:8px}
-  .eyebrow::before{content:"";width:22px;height:1.5px;background:currentColor;opacity:.55;display:inline-block}
-  .sec-head .eyebrow,.hero .eyebrow{justify-content:center}
+  body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:var(--wine)}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.1;font-optical-sizing:auto}
+  img{max-width:100%}
 
-  /* Accessible focus */
-  a:focus-visible,button:focus-visible,.btn:focus-visible,input:focus-visible{outline:2.5px solid var(--wine);outline-offset:3px;border-radius:6px}
+  /* One small-label style, sentence case. Brand names keep their own casing. */
+  .label{font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--wine)}
+  .label.on-dark{color:var(--goldOnDark)}
 
-  /* scroll progress thread */
-  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--gold),var(--goldSoft));box-shadow:0 0 10px rgba(201,168,92,.6)}
+  a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2.5px solid var(--wine);outline-offset:3px;border-radius:4px}
+  .on-dark a:focus-visible,.band a:focus-visible{outline-color:var(--goldOnDark)}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--wine);color:#fff;padding:12px 18px;z-index:100}
+  .skip:focus{left:8px;top:8px}
 
-  /* Buttons */
-  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:15px 30px;border-radius:40px;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s;cursor:pointer;border:none;position:relative;overflow:hidden;white-space:nowrap}
-  .btn:hover{transform:translateY(-2px)}
-  .btn:active{transform:translateY(0)}
-  .btn-primary{background:var(--wine);color:#fff;box-shadow:0 10px 24px -10px rgba(122,59,79,.7)}
-  .btn-primary:hover{background:var(--wineDeep);box-shadow:0 16px 30px -10px rgba(122,59,79,.7)}
-  .btn-primary::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .6s var(--ease)}
-  .btn-primary:hover::after{left:140%}
-  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--wine);color:var(--wine)}
+  /* Buttons — deliberate rectangles, not pills */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;font-family:var(--sans);font-weight:600;font-size:15.5px;padding:13px 24px;border-radius:8px;border:1.5px solid transparent;text-decoration:none;transition:background .18s ease,border-color .18s ease,color .18s ease}
+  .btn-primary{background:var(--wine);color:#fff}
+  .btn-primary:hover{background:var(--wineDeep)}
   .btn-cream{background:var(--cream);color:var(--espresso)}
   .btn-cream:hover{background:#fff}
+  .btn-quiet{color:var(--ink);border-color:var(--line);background:transparent}
+  .btn-quiet:hover{border-color:var(--wine);color:var(--wine)}
 
-  /* Header */
-  header{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.72);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s,box-shadow .3s}
-  header.scrolled{border-bottom-color:var(--lineSoft);box-shadow:0 6px 24px -18px rgba(43,27,30,.5)}
-  /* vertical-only padding so .wrap's horizontal padding survives (shorthand would zero it) */
-  .nav{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;transition:padding .3s var(--ease)}
-  header.scrolled .nav{padding-top:11px;padding-bottom:11px}
-  .logo{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px}
-  .logo .heart{color:var(--wine);display:inline-block;animation:beat 3.4s ease-in-out infinite}
-  @keyframes beat{0%,100%{transform:scale(1)}8%{transform:scale(1.18)}16%{transform:scale(1)}24%{transform:scale(1.12)}}
-  .nav-links{display:flex;align-items:center;gap:30px}
-  .nav-links a{font-size:14.5px;font-weight:600;color:var(--inkSoft);transition:color .2s}
-  .nav-links a:hover{color:var(--ink)}
-  .nav .btn{padding:10px 20px;font-size:14px}
-  .nav-links a.btn-primary{color:#fff}
-  .nav-links a.btn-primary:hover{color:#fff}
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.94);border-bottom:1px solid transparent;transition:border-color .25s}
+  @supports (backdrop-filter:blur(12px)){header{background:rgba(243,239,230,.78);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px)}}
+  header.scrolled{border-bottom-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
+  .lockup{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .lockup img{width:34px;height:34px;border-radius:8px;display:block;box-shadow:0 1px 2px rgba(43,27,30,.22)}
+  .lockup .word{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);letter-spacing:-0.015em;line-height:1}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a.navlink{font-size:14.5px;font-weight:600;color:var(--inkSoft);text-decoration:none;padding:12px 0;min-height:44px;display:inline-flex;align-items:center}
+  .nav-links a.navlink:hover{color:var(--wine)}
+  .nav .btn{min-height:44px;padding:10px 18px;font-size:14.5px}
   .mobile-nav{display:none}
-  @media(max-width:720px){
+  @media(max-width:820px){
     .nav-links a.navlink{display:none}
-    .mobile-nav{display:flex;justify-content:center;gap:28px;padding-bottom:11px;margin-top:-2px}
-    .mobile-nav a{font-size:13.5px;font-weight:600;letter-spacing:.02em;color:var(--inkSoft)}
+    .mobile-nav{display:flex;gap:24px;padding-bottom:6px;border-top:1px solid var(--lineSoft);padding-top:4px}
+    .mobile-nav a{font-size:13px;font-weight:600;color:var(--inkSoft);text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
     .mobile-nav a:hover{color:var(--wine)}
     header.scrolled .mobile-nav{display:none}
   }
+  @media(max-width:400px){.nav .btn{padding:9px 14px;font-size:14px}.lockup .word{font-size:21px}}
 
-  /* ===== HERO — product-forward, layered warm background, animates on load ===== */
-  .hero{position:relative;overflow:hidden;background:
+  /* ---------- Phone figure ---------- */
+  .phone{position:relative;width:100%;max-width:272px;aspect-ratio:900/1810;margin:0 auto;filter:drop-shadow(0 18px 28px rgba(60,30,40,.22))}
+  .phone::after{content:"";position:absolute;inset:0;background:url("iphone-frame.png") center/100% 100% no-repeat;z-index:3;pointer-events:none}
+  .phone .screen{position:absolute;left:3.95%;top:.95%;width:92.1%;height:98.1%;overflow:hidden;z-index:1;background:#F1EDE4;border-radius:12.5% / 6%}
+  .phone .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  figure.shot{margin:0}
+  figure.shot figcaption{margin-top:14px;text-align:center}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:
       radial-gradient(120% 90% at 88% 8%, rgba(122,59,79,.16), transparent 46%),
       radial-gradient(90% 80% at 6% 96%, rgba(201,168,92,.20), transparent 52%),
       radial-gradient(70% 60% at 50% 40%, rgba(238,221,225,.55), transparent 70%),
       linear-gradient(180deg,#F6F2EA,#EFE8DD)}
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr 1fr;align-items:center;gap:24px;min-height:calc(100vh - 74px);padding:56px 0 72px}
-  .hero-copy{max-width:33rem}
-  .hero-copy>*{animation:rise .85s var(--ease) backwards}
-  .hero-copy>*:nth-child(1){animation-delay:.05s}
-  .hero-copy>*:nth-child(2){animation-delay:.13s}
-  .hero-copy>*:nth-child(3){animation-delay:.22s}
-  .hero-copy>*:nth-child(4){animation-delay:.31s}
-  .hero-copy>*:nth-child(5){animation-delay:.40s}
-  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-  .hero h1{font-size:clamp(40px,5.6vw,68px);margin:18px 0 0;max-width:15ch;letter-spacing:-0.028em}
-  .hero .lead{font-size:clamp(16px,1.35vw,19px);color:var(--inkSoft);max-width:46ch;margin:22px 0 0}
-  .hero-cta{display:flex;flex-direction:column;gap:16px;margin-top:34px;align-items:flex-start}
-  .hero-cta .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:4px;font-size:13.5px;color:var(--inkFaint)}
-  .hero-trust .dot{width:4px;height:4px;border-radius:50%;background:var(--greige)}
-  .hero-trust b{color:var(--wine);font-weight:700}
-  .avatars{display:flex}
-  .avatars span{width:26px;height:26px;border-radius:50%;border:2px solid var(--ivory);margin-left:-8px;background:var(--roseWash);display:grid;place-items:center;font-size:12px}
-  .avatars span:first-child{margin-left:0}
+  .hero-grid{position:relative;z-index:2}
 
-  /* Hero stage */
-  .stage{position:relative;min-height:600px;display:flex;align-items:center;justify-content:center;animation:rise 1s var(--ease) .28s backwards}
+  /* Hero stage — two phones, drifting, with the live detail cards over them */
+  .stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:560px}
   .stage .orbit{position:absolute;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(122,59,79,.14),transparent 62%);filter:blur(6px)}
   .stage .orbit::before{content:"";position:absolute;inset:-40px;border-radius:50%;border:1px dashed rgba(122,59,79,.16)}
-  .phone{position:relative;width:288px;aspect-ratio:900/1810;filter:drop-shadow(0 40px 46px rgba(60,30,40,.34)) drop-shadow(0 10px 16px rgba(0,0,0,.14));will-change:transform}
-  .phone::after{content:"";position:absolute;inset:0;background:url("iphone-frame.png") center/100% 100% no-repeat;z-index:3;pointer-events:none}
-  .phone .screen{position:absolute;left:3.95%;top:0.95%;width:92.1%;height:98.1%;overflow:hidden;z-index:1;background:#F1EDE4;border-radius:12.5% / 6%}
-  .phone .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .stage .phone{width:288px;max-width:288px;margin:0}
+  .stage .phone.back{position:absolute;width:236px;max-width:236px;top:26px;right:0;transform:rotate(6deg) scale(.9);z-index:1;filter:drop-shadow(0 30px 40px rgba(60,30,40,.26)) saturate(.97);animation:floatBack 8.6s ease-in-out -2s infinite}
   .phone-wrap{position:relative;z-index:2}
-  .phone.back{position:absolute;width:236px;top:26px;right:0;transform:rotate(6deg) scale(.9);z-index:1;filter:drop-shadow(0 30px 40px rgba(60,30,40,.26)) saturate(.97);animation:floatBack 8.6s ease-in-out -2s infinite}
   .float{animation:float 7s ease-in-out infinite}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
   @keyframes floatBack{0%,100%{transform:rotate(6deg) scale(.9) translateY(0)}50%{transform:rotate(6deg) scale(.9) translateY(-13px)}}
-  /* floating detail card */
-  .floatcard{position:absolute;z-index:4;background:rgba(252,250,245,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow-md);border-radius:16px;padding:12px 15px;display:flex;align-items:center;gap:11px}
-  .floatcard .ic{width:34px;height:34px;border-radius:10px;background:var(--roseWash);color:var(--wine);display:grid;place-items:center;flex:0 0 auto}
-  .floatcard .h{font-family:var(--serif);font-weight:600;font-size:15px;line-height:1.1}
+  .floatcard{position:absolute;z-index:4;background:rgba(252,250,245,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.7);box-shadow:0 24px 50px -38px rgba(43,27,30,.55);border-radius:12px;padding:12px 15px;display:flex;align-items:center;gap:11px}
+  .floatcard .ic{width:34px;height:34px;border-radius:9px;background:var(--roseWash);color:var(--wine);display:grid;place-items:center;flex:0 0 auto}
+  .floatcard .h{font-family:var(--serif);font-weight:600;font-size:15px;line-height:1.1;color:var(--ink)}
   .floatcard .s{font-size:12px;color:var(--inkFaint);margin-top:1px}
   .floatcard.a{left:-6px;top:120px;animation:float 9s ease-in-out infinite}
   .floatcard.b{right:-10px;bottom:96px;animation:float 8s ease-in-out -1.5s infinite}
-  @media(max-width:980px){
-    .hero{padding:0}
-    /* mobile: lead with the phone (order -1), text underneath */
-    .hero-grid{grid-template-columns:1fr;text-align:center;min-height:0;padding:16px 0 10px;gap:22px}
-    .hero-copy{max-width:none;margin:0 auto}
-    .hero .eyebrow,.hero h1,.hero .lead{margin-left:auto;margin-right:auto}
-    .hero-cta{align-items:center;margin-top:24px}
-    .hero-cta .row{justify-content:center}
-    .hero-trust{justify-content:center}
-    .stage{order:-1;min-height:0;margin-top:0}
+  .hero figcaption{position:relative;z-index:4}
+
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center;padding-top:52px;padding-bottom:62px}
+  .hero h1{font-size:clamp(33px,4.6vw,55px);margin:0;max-width:17ch}
+  .hero .lead{font-size:clamp(16px,1.25vw,18.5px);color:var(--inkSoft);max-width:48ch;margin:20px 0 0}
+  .hero .against{margin-top:14px;font-size:15.5px;color:var(--inkSoft);max-width:48ch}
+  .hero .against b{color:var(--ink);font-weight:600}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .facts{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 18px}
+  .facts li{list-style:none;font-size:13.5px;color:var(--inkSoft)}
+  .facts li b{color:var(--ink);font-weight:600}
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:26px;padding-top:26px;padding-bottom:34px;text-align:center}
+    .hero h1,.hero .lead,.hero .against{margin-left:auto;margin-right:auto}
+    .hero-cta{justify-content:center}
+    .facts{justify-content:center}
+    .hero .shot{order:-1}
+    /* pin the stage to a fixed box once it centres, so the back phone and
+       card B can't push past the viewport edge and get clipped */
+    figure.shot.stage{min-height:0;max-width:430px;margin-left:auto;margin-right:auto}
+    .phone{max-width:236px}
   }
   @media(max-width:600px){
-    .hero h1{font-size:34px}
-    .hero .lead{margin-top:16px}
-    /* trust row: wrap cleanly into centered lines instead of cramming on one */
-    .hero-trust{flex-wrap:wrap;justify-content:center;gap:4px 10px}
-    .hero-trust .avatars,.hero-trust .dot{display:none}
-    .hero-trust>span:not(.avatars):not(.dot){flex:0 0 100%;text-align:center}
-    /* the floating cards clip off-screen at this width — let the phone stand alone */
+    /* the cards clip off-screen at this width and the back phone crowds it — let the front phone stand alone */
     .floatcard{display:none}
-    .phone{width:230px}.phone.back{display:none}
+    .stage .phone{width:230px;max-width:230px}
+    .stage .phone.back{display:none}
     .stage .orbit{width:300px;height:300px}
   }
 
-  /* Stat strip */
-  .stats{background:var(--espresso);color:var(--cream);position:relative;overflow:hidden}
-  .stats::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
-  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:44px 0}
-  .stat{text-align:center;position:relative}
-  .stat+.stat::before{content:"";position:absolute;left:0;top:14%;height:72%;width:1px;background:rgba(201,168,92,.22)}
-  .stat .n{font-family:var(--serif);font-size:clamp(34px,5vw,52px);font-weight:600;color:var(--goldSoft);line-height:1}
-  .stat .l{font-size:13.5px;color:var(--creamSoft);margin-top:9px;letter-spacing:.01em}
-  @media(max-width:680px){.stats-grid{grid-template-columns:1fr 1fr;gap:30px 18px}.stat:nth-child(3)::before,.stat:nth-child(odd)::before{display:none}}
+  /* ---------- Sections ---------- */
+  section{padding:64px 0}
+  @media(max-width:820px){section{padding:48px 0}}
+  .sec-head{max-width:44ch}
+  .sec-head h2,.sec-h2{font-size:clamp(27px,3.7vw,42px);max-width:24ch}
+  .sec-head p{color:var(--inkSoft);font-size:16.5px;margin-top:14px}
 
-  /* Sections */
-  section{padding:96px 0}
-  @media(max-width:820px){section{padding:60px 0}}
-  .sec-head{text-align:center;max-width:56ch;margin:0 auto 56px}
-  .sec-head h2{font-size:clamp(29px,4.4vw,46px);margin-top:14px}
-  .sec-head p{color:var(--inkSoft);font-size:17px;margin-top:16px}
+  /* ---------- Journey ---------- */
+  .tabs{display:none}
+  html.js .tabs{display:flex;gap:0;margin-top:30px;border-bottom:1px solid var(--line)}
+  .tab{appearance:none;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;padding:14px 0;min-height:48px;cursor:pointer;font-family:var(--serif);font-size:19px;font-weight:600;color:var(--inkFaint);transition:color .2s ease,border-color .2s ease}
+  .tab+.tab{margin-left:36px}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--wine)}
+  .tab:focus-visible{outline:2.5px solid var(--wine);outline-offset:2px;border-radius:3px}
 
-  /* Insight (dark psychology band) */
-  .insight{background:var(--espresso);color:var(--cream);position:relative;overflow:hidden}
-  .insight::after{content:"";position:absolute;width:560px;height:560px;top:-220px;right:-160px;background:radial-gradient(circle,rgba(122,59,79,.4),transparent 62%);pointer-events:none}
-  .insight .eyebrow{color:var(--gold)}
-  .insight .eyebrow::before{opacity:.6}
-  .insight h2{color:var(--cream);font-size:clamp(28px,4.2vw,44px);max-width:18ch;margin-top:14px}
-  .insight .cols{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .insight .body p{color:var(--creamSoft);font-size:17px;margin-top:18px}
-  .insight .body p .em{color:var(--cream);font-style:italic}
-  .thread-list{list-style:none;margin:6px 0 0;position:relative;padding-left:0}
-  .thread-list::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(201,168,92,.15));transform-origin:top;transform:scaleY(0);transition:transform 1.1s var(--ease)}
-  .thread-list.in::before{transform:scaleY(1)}
-  .thread-list li{position:relative;padding:16px 0 16px 30px}
-  .thread-list li+li{border-top:1px solid rgba(201,168,92,.16)}
-  .thread-list li::before{content:"";position:absolute;left:3px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,168,92,.18)}
-  .thread-list li .h{font-family:var(--serif);font-size:18px;color:var(--cream);font-weight:600}
-  .thread-list li .p{font-size:14.5px;color:var(--creamSoft);margin-top:2px}
-  @media(max-width:820px){.insight .cols{grid-template-columns:1fr;gap:34px}}
-
-  /* Feature panels */
-  .features{background:linear-gradient(180deg,var(--ivory),var(--oat))}
-  .panel{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:48px;margin-bottom:26px;overflow:hidden;box-shadow:var(--shadow-md);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-  .panel:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-  .panel .num{position:absolute;top:6px;right:26px;font-family:var(--serif);font-size:158px;font-weight:600;color:var(--roseWash);opacity:.5;line-height:1;pointer-events:none;z-index:0}
-  .panel .copy,.panel .fig{position:relative;z-index:1}
-  .panel.rev .fig{order:2}
-  .panel h3{font-size:clamp(24px,3.1vw,32px);margin-top:12px}
-  .panel p{color:var(--inkSoft);font-size:16.5px;margin-top:14px;max-width:42ch}
-  .panel .fig{display:flex;justify-content:center}
-  .panel .phone{width:240px}
-  .mini{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-size:13px;font-weight:600;color:var(--wine);background:var(--roseWash);border-radius:40px;padding:6px 14px}
-  @media(max-width:820px){.panel{grid-template-columns:1fr;gap:28px;text-align:center;padding:36px 26px}.panel.rev .fig{order:0}.panel p{margin-left:auto;margin-right:auto}.mini{justify-content:center}.panel .num{font-size:112px;top:2px;right:16px}}
-
-  /* Statement band — private space, split layout with hero.jpg as a standalone card */
-  .statement{background:var(--espresso);color:var(--cream);position:relative;overflow:hidden}
-  .statement::before{content:"";position:absolute;width:640px;height:640px;top:-260px;right:-220px;background:radial-gradient(circle,rgba(201,168,92,.14),transparent 62%);pointer-events:none}
-  .statement-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
-  .statement-copy{max-width:34rem}
-  .statement .eyebrow{color:var(--gold)}
-  .statement h2{color:var(--cream);font-size:clamp(29px,4.2vw,46px);margin-top:14px;max-width:16ch}
-  .statement p{color:var(--creamSoft);font-size:16.5px;margin-top:12px}
-  .statement-fig img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:56% 38%;border-radius:28px;border:1px solid rgba(247,238,227,.14);box-shadow:0 30px 70px -28px rgba(0,0,0,.65)}
+  .slides{margin-top:44px}
+  .slide{display:grid;grid-template-columns:1fr 288px;gap:72px;align-items:start}
+  .slide[hidden]{display:none}
+  /* no JS: the three panels stack, so they need separating */
+  html:not(.js) .slide+.slide{margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}
+  .slide .copy{max-width:40ch;padding-top:6px}
+  .slide h3{font-size:clamp(24px,3vw,33px)}
+  .slide p{color:var(--inkSoft);font-size:17px;margin-top:16px}
+  html.js .slide .copy,html.js .slide .shot{animation:fadein .3s ease both}
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
   @media(max-width:860px){
-    .statement-grid{grid-template-columns:1fr;text-align:center;gap:32px}
-    .statement-copy{max-width:none;margin:0 auto}
-    .statement-fig{order:-1;max-width:420px;margin:0 auto}
+    .slide{grid-template-columns:1fr;gap:28px}
+    .slide .shot{order:-1}
+    .slide .copy{max-width:none}
+    .slide .phone{width:100%;max-width:236px}
+    .tab{font-size:17px}
+    .tab+.tab{margin-left:24px}
   }
+  @media(min-width:861px){.slide .shot .phone{width:288px;max-width:288px}}
 
-  /* Steps */
-  .steps{background:var(--oat)}
-  .steps-grid{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-  .step::before{counter-increment:s;content:counter(s);display:inline-flex;width:42px;height:42px;border-radius:50%;background:var(--wine);color:#fff;font-family:var(--serif);font-weight:600;align-items:center;justify-content:center;margin-bottom:18px}
-  .step h3{font-size:19px}
-  .step p{color:var(--inkSoft);font-size:15px;margin-top:8px}
-  @media(max-width:760px){.steps-grid{grid-template-columns:1fr}}
+  /* ---------- Evidence ---------- */
+  .evidence{background:var(--ivory);border-bottom:1px solid var(--line);padding:56px 0}
+  .ev-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.9fr);gap:56px;align-items:start}
+  .evidence h2{font-size:clamp(20px,2.2vw,25px);line-height:1.25}
+  .ev{padding:18px 0;border-top:1px solid var(--line)}
+  .ev:first-child{padding-top:0;border-top:none}
+  .ev p{font-size:15.5px;color:var(--inkSoft)}
+  .ev p b{color:var(--ink);font-weight:600}
+  .ev cite{display:block;margin-top:7px;font-style:normal;font-size:13px}
+  .ev cite a{color:var(--inkFaint);text-decoration:underline;text-underline-offset:3px}
+  .ev cite a:hover{color:var(--wine)}
+  .ev-note{margin-top:22px;font-size:13px;color:var(--inkFaint)}
+  @media(max-width:820px){.ev-grid{grid-template-columns:1fr;gap:22px}.evidence{padding:44px 0}}
 
-  /* Pricing */
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-  .plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px 28px;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-  .plan:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-  .plan.feat{border:2px solid var(--wine);position:relative;box-shadow:0 26px 52px -28px rgba(122,59,79,.5);transform:scale(1.03)}
-  .plan.feat:hover{transform:scale(1.03) translateY(-4px)}
-  .plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--wine);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:40px}
-  .plan .name{font-family:var(--serif);font-size:20px;font-weight:600}
-  .plan .amt{font-family:var(--serif);font-size:44px;font-weight:600;margin-top:10px;line-height:1}
-  .plan .amt .anchor{font-size:20px;color:var(--inkFaint);text-decoration:line-through;margin-right:8px}
-  .plan .per{font-size:14px;color:var(--inkSoft);margin-top:8px}
-  .plan .save{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--wine);background:var(--roseWash);border-radius:40px;padding:5px 12px}
-  .plan ul{list-style:none;margin:22px 0 26px;display:grid;gap:10px}
-  .plan li{position:relative;padding-left:26px;font-size:14.5px;color:var(--ink)}
-  .plan li::before{content:"✓";position:absolute;left:0;color:var(--wine);font-weight:700}
-  .plan .btn{width:100%;justify-content:center;margin-top:auto}
-  .price-note{text-align:center;font-size:13px;color:var(--inkFaint);max-width:60ch;margin:28px auto 0}
-  @media(max-width:820px){.price-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}.plan.feat{order:-1;transform:none}.plan.feat:hover{transform:translateY(-4px)}}
+  /* ---------- Comparison ---------- */
+  .compare{background:var(--oat);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tablewrap:focus-visible{outline:2.5px solid var(--wine);outline-offset:3px}
+  .tablewrap{margin-top:34px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;table-layout:fixed}
+  th,td{padding:16px 10px;text-align:center;border-bottom:1px solid var(--line);vertical-align:middle}
+  thead th{font-size:14px;font-weight:600;color:var(--inkSoft);border-bottom:1.5px solid var(--ink);vertical-align:bottom;line-height:1.25;padding-bottom:10px}
+  thead th.korby{color:var(--ink)}
+  tbody th{font-weight:400;font-size:15.5px;color:var(--ink);text-align:left;padding-left:0;line-height:1.35}
+  th:first-child{width:40%}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:none}
+  .mark{font-size:18px;line-height:1;display:inline-block}
+  .mark.y{color:var(--wine)}
+  .mark.n{color:var(--inkFaint);opacity:.75}
+  .part{font-size:13.5px;color:var(--inkFaint)}
+  @media(max-width:640px){
+    th,td{padding:13px 3px}
+    tbody th{font-size:13.5px;padding-right:10px}
+    thead th{font-size:12px}
+    th:first-child{width:37%}
+    .mark{font-size:16px}
+    .part{font-size:12px}
+  }
+  @media(max-width:359px){thead th{font-size:11px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}th:first-child{width:32%}tbody th{font-size:12.5px}th,td{padding:11px 3px}}
 
-  /* Closing — email capture card */
-  .closing{background:var(--espresso);color:var(--cream);position:relative;overflow:hidden}
-  .closing::before{content:"";position:absolute;width:680px;height:680px;top:-280px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(201,168,92,.16),transparent 62%);pointer-events:none}
-  .closing::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E")}
-  .closing .inner{position:relative;z-index:1;max-width:620px;margin:0 auto;text-align:center}
-  .closing h2{color:var(--cream);font-size:clamp(30px,4.6vw,50px);max-width:20ch;margin:14px auto 0}
-  .closing p{color:var(--creamSoft);font-size:17px;margin:16px auto 0;max-width:46ch}
-  .capture{margin:32px auto 0;display:flex;gap:10px;max-width:460px;background:rgba(247,238,227,.06);border:1px solid rgba(201,168,92,.28);border-radius:46px;padding:8px;flex-wrap:wrap}
-  .capture input{flex:1 1 200px;min-width:0;background:transparent;border:none;color:var(--cream);font-family:var(--sans);font-size:15px;padding:12px 18px}
-  .capture input::placeholder{color:var(--creamSoft)}
-  .capture .btn{flex:0 0 auto}
-  .closing .fine{margin-top:16px;font-size:13px;color:var(--creamSoft)}
-  @media(max-width:520px){.capture{border-radius:20px}.capture .btn{width:100%;justify-content:center}}
+  .compare .closer{margin-top:26px;font-size:17px;color:var(--ink);max-width:60ch;font-family:var(--serif);line-height:1.45}
 
-  /* Footer */
-  footer{background:var(--oat);border-top:1px solid var(--line);padding:56px 0 34px}
-  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px}
-  .foot-brand{max-width:32ch}
-  .foot-brand p{font-size:14px;color:var(--inkSoft);margin-top:10px}
-  .foot-cols{display:flex;gap:56px;flex-wrap:wrap}
-  .foot-col h4{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--inkFaint);margin-bottom:12px}
-  .foot-col a{display:block;font-size:14.5px;color:var(--inkSoft);margin-bottom:9px}
+  /* ---------- Dark band: privacy statement ---------- */
+  .band{background:var(--espresso);color:var(--cream)}
+  .band h2{color:var(--cream);font-size:clamp(26px,3.4vw,38px);max-width:16ch}
+  .band-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:64px;align-items:start}
+  .band dl{display:grid;gap:0}
+  .band dt{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--cream);padding-top:18px;border-top:1px solid rgba(217,185,120,.28)}
+  .band dl>div:first-child dt{padding-top:0;border-top:none}
+  .band dd{color:var(--creamSoft);font-size:15.5px;margin-top:6px;padding-bottom:18px}
+  .band dl>div:last-child dd{padding-bottom:0}
+  @media(max-width:820px){.band-split{grid-template-columns:1fr;gap:24px}.band h2{max-width:none}}
+
+  /* ---------- Pricing ---------- */
+  .pricing .sec-head{max-width:60ch;margin:0 auto;text-align:center}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;margin-top:40px}
+  .plan{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:30px 26px;display:flex;flex-direction:column}
+  .plan.feat{border:1.5px solid var(--wine);position:relative;background:#FFFDF8}
+  .plan .tag{position:absolute;top:-11px;left:26px;background:var(--wine);color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px}
+  .plan .name{font-family:var(--serif);font-size:19px;font-weight:600}
+  .plan .amt{font-family:var(--serif);font-size:42px;font-weight:600;margin-top:8px;line-height:1}
+  .plan .amt .was{font-size:18px;color:var(--inkFaint);text-decoration:line-through;margin-right:9px;font-weight:400}
+  .plan .per{font-size:13.5px;color:var(--inkSoft);margin-top:8px}
+  .plan .save{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--wine)}
+  .plan ul{list-style:none;margin:20px 0 0;padding-top:16px;border-top:1px solid var(--lineSoft);display:grid;gap:9px}
+  .plan li{position:relative;padding-left:16px;font-size:14.5px;color:var(--inkSoft)}
+  .plan li::before{content:"\00B7";position:absolute;left:0;color:var(--wine);font-weight:700}
+  .price-cta{margin-top:34px;text-align:center}
+  .price-cta .choose{margin-top:14px;font-size:14px;color:var(--inkSoft)}
+  .price-note{text-align:center;font-size:12.5px;color:var(--inkFaint);max-width:62ch;margin:16px auto 0;line-height:1.55}
+  @media(max-width:860px){.price-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}.plan.feat{order:-1}}
+
+  /* ---------- Closing ---------- */
+  .closing{text-align:center;background:var(--espresso);color:var(--cream)}
+  .closing h2{color:var(--cream);font-size:clamp(28px,4vw,44px);max-width:24ch;margin:0 auto}
+  .closing p{color:var(--creamSoft);font-size:17px;margin:16px auto 0;max-width:44ch}
+  .closing .btn{margin-top:28px}
+  .closing .fineprint{margin-top:16px;font-size:13.5px;color:var(--creamSoft)}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--oat);border-top:1px solid var(--line);padding:44px 0 26px}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:34px}
+  .foot-brand{max-width:30ch}
+  .foot-brand p{font-size:14px;color:var(--inkSoft);margin-top:12px}
+  .foot-cols{display:flex;gap:52px;flex-wrap:wrap}
+  .foot-col h3{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:10px}
+  .foot-col a{display:block;font-size:14.5px;color:var(--inkSoft);text-decoration:none;margin-bottom:6px;padding:6px 0;min-height:32px}
   .foot-col a:hover{color:var(--wine)}
-  .foot-base{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--inkFaint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  @media(max-width:600px){
-    footer{padding:44px 0 30px}
-    .foot-grid{flex-direction:column;gap:28px}
-    .foot-cols{gap:40px}
-  }
+  .foot-base{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--inkFaint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media(max-width:600px){.foot-grid{flex-direction:column;gap:26px}.foot-cols{gap:36px}}
 
-  /* Reveal animations (below the fold, JS-driven) */
-  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
-  .js .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
-    .js .reveal{opacity:1!important;transform:none!important}
-    .hero-copy>*,.stage{animation:none!important}
-    .float,.logo .heart,.hero-photo img,.floatcard{animation:none!important}
-    #progress{display:none}
     html{scroll-behavior:auto}
+    .float,.stage .phone.back,.floatcard{animation:none!important}
+    html.js .slide .copy,html.js .slide .shot{animation:none!important}
+    *{transition-duration:.01ms!important}
   }
 </style>
 </head>
 <body>
-<div id="progress"></div>
+<a class="skip" href="#main">Skip to content</a>
 
 <header id="hdr">
-  <div class="wrap nav">
-    <div class="logo"><span class="heart">&#9829;</span> Korby</div>
-    <nav class="nav-links">
-      <a class="navlink" href="#insight">Why Korby</a>
-      <a class="navlink" href="#features">Features</a>
-      <a class="navlink" href="#pricing">Pricing</a>
-      <a class="btn btn-primary" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download</a>
+  <div class="wrap">
+    <div class="nav">
+      <a class="lockup" href="/">
+        <img src="korby-icon-180.png" width="34" height="34" alt="" decoding="async">
+        <span><span class="word">Korby</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="navlink" href="#how">How it works</a>
+        <a class="navlink" href="#why">Why not Notes</a>
+        <a class="navlink" href="#pricing">Pricing</a>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download for iPhone</a>
+      </nav>
+    </div>
+    <nav class="mobile-nav" aria-label="Secondary">
+      <a href="#how">How it works</a>
+      <a href="#why">Why not Notes</a>
+      <a href="#pricing">Pricing</a>
     </nav>
   </div>
-  <nav class="mobile-nav wrap">
-    <a href="#insight">Why</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-  </nav>
 </header>
+
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Now on the US App&nbsp;Store</span>
-      <h1>Don't let the good years pass on &ldquo;someday.&rdquo;</h1>
-      <p class="lead">Korby is the private space where the two of you collect the experiences you actually want, plan the next one, and keep every one you live. Intentions become dates. Dates become memories.</p>
+      <h1>Start with one thing you&rsquo;ve both been putting off</h1>
+      <p class="lead">Korby is the shared bucket list for two. Collect the trips, restaurants and small plans you keep talking about, put a real date and a checklist on one of them, then keep it, photos and all, as a dated memory once you have lived it.</p>
+      <p class="against">A shared note holds the ideas. <b>It cannot date them, count down to them, or keep the photos afterwards.</b></p>
       <div class="hero-cta">
-        <div class="row">
-          <a class="btn btn-primary" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download on the App&nbsp;Store&nbsp;&rarr;</a>
-          <a class="btn btn-ghost" href="#insight">Why it works</a>
-        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download for iPhone</a>
+        <a class="btn btn-quiet" href="#how">See how it works</a>
       </div>
-      <div class="hero-trust">
-        <span class="avatars"><span>&#128118;</span><span>&#128105;</span></span>
-        <span>14 days free, then <b>$29.99/year</b></span>
-        <span class="dot"></span>
-        <span>Private &amp; ad-free</span>
-      </div>
+      <ul class="facts">
+        <li><b>14 days free</b>, then $29.99/year</li>
+        <li>One subscription covers <b>both of you</b></li>
+        <li>No ads, no feed</li>
+      </ul>
     </div>
 
-    <div class="stage">
-      <div class="orbit"></div>
-      <div class="phone back"><div class="screen"><img src="memories_1.jpg" alt="Korby shared memories overview" width="236" height="474" loading="eager" decoding="async"></div></div>
-      <div class="phone-wrap float">
-        <div class="phone front" id="tilt"><div class="screen"><img src="home.jpg" alt="The Korby home screen showing a couple's shared next-up experience and progress toward their year" width="288" height="579" loading="eager" fetchpriority="high" decoding="async"></div></div>
+    <figure class="shot stage" id="stage">
+      <span class="orbit" aria-hidden="true"></span>
+
+      <div class="phone back" aria-hidden="true">
+        <div class="screen"><img src="memories_1.jpg" width="236" height="474" alt="" loading="eager" decoding="async"></div>
       </div>
-      <div class="floatcard a">
+
+      <div class="phone-wrap float">
+        <div class="phone" id="tilt">
+          <div class="screen">
+            <img src="home.jpg" width="288" height="579" alt="Korby home screen: a couple's shared next experience, 'Live on a small island', due in 10 days, above a bar showing 4 of 12 experiences completed in 2026" loading="eager" fetchpriority="high" decoding="async">
+          </div>
+        </div>
+      </div>
+
+      <div class="floatcard a" aria-hidden="true">
         <span class="ic">&#9829;</span>
         <div><div class="h">In 10 days</div><div class="s">Live on a small island</div></div>
       </div>
-      <div class="floatcard b">
+      <div class="floatcard b" aria-hidden="true">
         <span class="ic">&#10003;</span>
         <div><div class="h">4 of 12 in 2026</div><div class="s">Your shared year</div></div>
       </div>
-    </div>
+    </figure>
   </div>
 </section>
 
-<!-- STAT STRIP -->
-<section class="stats" style="padding:0">
-  <div class="wrap stats-grid">
-    <div class="stat reveal"><div class="n" data-count="100" data-suffix="+">100+</div><div class="l">hand-picked date ideas</div></div>
-    <div class="stat reveal"><div class="n">3</div><div class="l">lists for every dream</div></div>
-    <div class="stat reveal"><div class="n">2</div><div class="l">phones, one shared list</div></div>
-    <div class="stat reveal"><div class="n">0</div><div class="l">ads &middot; feeds &middot; noise</div></div>
-  </div>
-</section>
-
-<!-- INSIGHT / PSYCHOLOGY -->
-<section class="insight" id="insight">
+<!-- PRODUCT STORY -->
+<section id="how">
   <div class="wrap">
-    <div class="cols">
-      <div class="body">
-        <span class="eyebrow reveal">Why it works</span>
-        <h2 class="reveal">The problem was never love. It was the calendar.</h2>
-        <p class="reveal">Life fills with the urgent, and the things you meant to do together (the trip, the class, the standing Sunday adventure) quietly slide to &ldquo;later.&rdquo; <span class="em">Later has a way of not arriving.</span></p>
-        <p class="reveal">Researchers who study lasting couples keep landing on the same finding: the pairs who stay close are the ones who keep sharing new experiences, and who look forward to them, out loud, together. Anticipation is its own quiet happiness. Korby gives it somewhere to live.</p>
-      </div>
-      <ul class="thread-list reveal">
-        <li><div class="h">Shared novelty</div><div class="p">Doing new things together reliably deepens connection, more than repeating the familiar.</div></li>
-        <li><div class="h">Anticipation</div><div class="p">Looking forward to something with someone is a happiness of its own, before it even happens.</div></li>
-        <li><div class="h">Savoring</div><div class="p">Returning to a good memory together makes it count twice.</div></li>
-        <li><div class="h">Intention beats willpower</div><div class="p">A small shared system turns &ldquo;we should&rdquo; into a date on the calendar.</div></li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <h2 class="sec-h2">One idea, followed all the way through.</h2>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow reveal">What you'll do together</span>
-      <h2 class="reveal">A calm home for everything you're saving for each other.</h2>
+    <div class="tabs" role="tablist" aria-label="How Korby works">
+      <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true" tabindex="0" type="button">Collect</button>
+      <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1" type="button">Plan</button>
+      <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" type="button">Keep</button>
     </div>
 
-    <div class="panel reveal">
-      <div class="num">01</div>
-      <div class="copy">
-        <span class="eyebrow">Collect</span>
-        <h3>Every someday, in one quiet place.</h3>
-        <p>Add a wish in seconds, from a hundred hand-picked ideas or your own, and let it settle where it belongs: things with a date, things you're saving for the right moment, and the big once-in-a-lifetime dreams.</p>
-        <div class="mini"><span class="chip">Planned</span><span class="chip">Someday</span><span class="chip">Dreams</span></div>
+    <div class="slides" id="slides">
+      <div class="slide" role="tabpanel" id="panel-0" aria-labelledby="tab-0" tabindex="0">
+        <div class="copy">
+          <h3>Both of you add to one list.</h3>
+          <p>Add a wish in seconds, either your own or one of the 100+ in Discover. It sits under Someday until it has a date, Planned once it does, Dreams if it is the big one. Whatever one of you adds, the other sees.</p>
+        </div>
+        <figure class="shot">
+          <div class="phone"><div class="screen"><img src="someday.jpg" width="288" height="579" alt="The Someday list in Korby showing three saved wishes: a sommelier course, a PADI diving certificate, and chartering a weekend boat" loading="lazy" decoding="async"></div></div>
+        </figure>
       </div>
-      <div class="fig">
-        <div class="phone"><div class="screen"><img src="someday.jpg" alt="Korby Someday list" width="240" height="483" loading="lazy" decoding="async"></div></div>
-      </div>
-    </div>
 
-    <div class="panel rev reveal">
-      <div class="num">02</div>
-      <div class="fig">
-        <div class="phone"><div class="screen"><img src="item_detail_checklist.jpg" alt="Planning a wish: date, photo and checklist" width="240" height="483" loading="lazy" decoding="async"></div></div>
+      <div class="slide" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
+        <div class="copy">
+          <h3>Give it a date and it starts counting down.</h3>
+          <p>Set the days, add the photo that made you want it, and work a shared checklist: book the boat, make the reservation, buy the sunscreen. It moves to Planned and shows on both home screens as what is next.</p>
+        </div>
+        <figure class="shot">
+          <div class="phone"><div class="screen"><img src="item_detail_checklist.jpg" width="288" height="579" alt="A Korby wish detail screen: 'Live on a small island', tagged Travel and Multi-day, with a three-item shared checklist and the planned dates Jul 15 to Jul 22 2026" loading="lazy" decoding="async"></div></div>
+        </figure>
       </div>
-      <div class="copy">
-        <span class="eyebrow">Plan</span>
-        <h3>Turn &ldquo;we should&rdquo; into a date.</h3>
-        <p>Give a wish a day, add a photo and the details, tick off a small checklist together. The moment it has a date it moves to Planned and starts counting down, so anticipation has something to hold onto.</p>
-      </div>
-    </div>
 
-    <div class="panel reveal">
-      <div class="num">03</div>
-      <div class="copy">
-        <span class="eyebrow">Keep</span>
-        <h3>Everything you live becomes a memory.</h3>
-        <p>Mark an experience done and it slips onto a shared timeline (your photos, a note, the two of you) to wander back through anytime. A gentle count of the year you're building, without a single streak or leaderboard.</p>
-      </div>
-      <div class="fig">
-        <div class="phone"><div class="screen"><img src="memories_1.jpg" alt="Korby memories: timeline and year in numbers" width="240" height="483" loading="lazy" decoding="async"></div></div>
+      <div class="slide" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0">
+        <div class="copy">
+          <h3>Done does not mean gone.</h3>
+          <p>Mark it done and it drops onto a shared timeline with its date, its photos and a word for how it felt. The year adds up against a goal you set together. No streaks, no score, nobody watching.</p>
+        </div>
+        <figure class="shot">
+          <div class="phone"><div class="screen"><img src="memories_1.jpg" width="288" height="579" alt="The Korby memories timeline for 2026, showing four moments including a Machu Picchu trip dated April 7 2026" loading="lazy" decoding="async"></div></div>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATEMENT BAND (private space, split layout) -->
-<section class="statement">
-  <div class="wrap statement-grid">
-    <div class="statement-copy">
-      <span class="eyebrow reveal">No feeds. No streaks. No strangers.</span>
-      <h2 class="reveal">A private space, just for the two of you.</h2>
-      <p class="reveal">Private and ad-free by design.</p>
-      <p class="reveal">One subscription covers you both.</p>
-    </div>
-    <div class="statement-fig reveal">
-      <img src="hero.jpg" alt="A hand holding an iPhone showing the Korby app in a warm, sunlit living room" loading="lazy" decoding="async">
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="steps">
+<!-- DIFFERENTIATION -->
+<section class="compare" id="why">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow reveal">Set up in under a minute</span>
-      <h2 class="reveal">Three small steps.</h2>
+      <h2>You're probably using four of them for this.</h2>
+      <p>Each does a piece. None carries an idea from "we should" to a memory you can find again.</p>
     </div>
-    <div class="steps-grid">
-      <div class="step reveal"><h3>Pair the two of you</h3><p>Create your shared profile and invite your partner with a single six-character code.</p></div>
-      <div class="step reveal"><h3>Add the first wish</h3><p>Pick one thing you've always meant to do together and drop it in. That's the whole beginning.</p></div>
-      <div class="step reveal"><h3>Live it, then keep it</h3><p>Plan it, do it, mark it done, and watch your shared timeline start to fill.</p></div>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"><span class="vh">Capability</span></th>
+            <th scope="col">Shared note</th>
+            <th scope="col">Calendar</th>
+            <th scope="col">Pinterest</th>
+            <th scope="col" class="korby">Korby</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Holds ideas that are not dated yet</th>
+            <td><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+            <td class="korby"><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Puts a date and a countdown on one</th>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td class="korby"><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Keeps the checklist and photos on it</th>
+            <td><span class="part">Partly</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td class="korby"><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Becomes a dated memory afterwards</th>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td class="korby"><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+          </tr>
+          <tr>
+            <th scope="row">No feed, no ads</th>
+            <td><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+            <td><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+            <td><span class="mark n" aria-hidden="true">&#8211;</span><span class="vh">No</span></td>
+            <td class="korby"><span class="mark y" aria-hidden="true">&#10003;</span><span class="vh">Yes</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <p class="closer">The idea, the date, the checklist and the photos end up in four different apps, so the thing never quite gets planned, and afterwards there is nowhere it lives.</p>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section class="evidence">
+  <div class="wrap ev-grid">
+    <h2>Three findings the app is built around.</h2>
+    <div>
+      <div class="ev">
+        <p><b>New things together beat nice things together.</b> Across five studies, three of them experiments with married couples, the couples who did something novel and exciting together rated their relationship higher straight afterwards than the couples who did something merely pleasant.</p>
+        <cite><a href="https://files.blogs.baruch.cuny.edu/wp-content/blogs.dir/7309/files/2019/11/Aron_Norman_Aron_McKenna_Heyman_2000.pdf" rel="noopener">Aron et al., Journal of Personality and Social Psychology, 2000</a></cite>
+      </div>
+      <div class="ev">
+        <p><b>The waiting is part of it.</b> In an experience-sampling study of 2,266 adults, people looking forward to an experience reported more happiness, more pleasantness and more excitement than people looking forward to a purchase. Korby's countdown is that window.</p>
+        <cite><a href="https://journals.sagepub.com/doi/abs/10.1177/0956797614546556" rel="noopener">Kumar, Killingsworth and Gilovich, Psychological Science, 2014</a></cite>
+      </div>
+      <div class="ev">
+        <p><b>A date beats an intention.</b> A meta-analysis of 94 studies found that deciding when and where you will do a thing, instead of just meaning to, had a medium-to-large effect on whether it actually happened (d&nbsp;=&nbsp;.65).</p>
+        <cite><a href="https://cancercontrol.cancer.gov/sites/default/files/2020-06/goal_intent_attain.pdf" rel="noopener">Gollwitzer and Sheeran, Advances in Experimental Social Psychology, 2006</a></cite>
+      </div>
+      <p class="ev-note">These are general findings about couples, anticipation and planning. They are not studies of Korby, and we do not claim they measure it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="band">
+  <div class="wrap band-split">
+    <h2>Nobody in it but the two of you.</h2>
+    <dl>
+      <div>
+        <dt>No ads, no feed</dt>
+        <dd>No algorithm, no recommendations, nothing built to keep you scrolling.</dd>
+      </div>
+      <div>
+        <dt>No public profiles</dt>
+        <dd>Your lists and memories are yours. Nobody to follow, nobody following you.</dd>
+      </div>
+      <div>
+        <dt>One subscription, both partners</dt>
+        <dd>Whoever subscribes covers you both. The second person joins with a six-character code.</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
+<section class="pricing" id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow reveal">One price, both of you</span>
-      <h2 class="reveal">Fair, private, and ad-free.</h2>
-      <p class="reveal">Start with 14 days free. One subscription covers both partners: the second of you joins with a code.</p>
+      <h2>Fair, private, and ad-free.</h2>
+      <p>Start with 14 days free. Every plan covers both partners. The second of you joins with a code.</p>
     </div>
+
     <div class="price-grid">
-      <div class="plan reveal">
+      <div class="plan">
         <div class="name">Monthly</div>
         <div class="amt">$5.99</div>
-        <div class="per">per month</div>
+        <div class="per">per month · $71.88 a year</div>
         <ul><li>Everything in Korby</li><li>Both partners included</li><li>Cancel anytime</li></ul>
-        <a class="btn btn-ghost" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download</a>
       </div>
-      <div class="plan feat reveal">
-        <div class="tag">Most popular</div>
+      <div class="plan feat">
+        <div class="tag">Best value</div>
         <div class="name">Yearly</div>
-        <div class="amt"><span class="anchor">$45.99</span>$29.99</div>
-        <div class="per">per year &middot; about $2.50/mo</div>
+        <div class="amt"><span class="was">$44.99</span>$29.99</div>
+        <div class="per">per year · about $2.50 a month</div>
         <span class="save">Save 58% vs monthly</span>
         <ul><li>14 days free, then $29.99/yr</li><li>Unlimited wishes &amp; memories</li><li>Both partners included</li><li>Cancel anytime</li></ul>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download</a>
       </div>
-      <div class="plan reveal">
+      <div class="plan">
         <div class="name">Lifetime</div>
         <div class="amt">$79.99</div>
-        <div class="per">one time &middot; yours for good</div>
+        <div class="per">once · yours for good</div>
         <ul><li>Pay once, no subscription</li><li>Every future update</li><li>Both partners included</li></ul>
-        <a class="btn btn-ghost" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download</a>
       </div>
     </div>
-    <p class="price-note">Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Manage or cancel anytime in your App Store settings. Prices in USD.</p>
+
+    <div class="price-cta">
+      <a class="btn btn-primary" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download for iPhone</a>
+      <p class="choose">Pick your plan when you open the app.</p>
+    </div>
+    <p class="price-note">Subscriptions renew automatically unless cancelled at least 24 hours before the end of the period. Manage or cancel anytime in your App Store settings. Prices shown in US dollars and vary by country.</p>
   </div>
 </section>
 
 <!-- CLOSING -->
-<section class="closing" id="get">
+<section class="closing band">
   <div class="wrap">
-    <div class="inner">
-      <span class="eyebrow reveal" style="color:var(--gold);justify-content:center">Now available on the US App&nbsp;Store</span>
-      <h2 class="reveal">Start with one small thing you've always meant to do.</h2>
-      <p class="reveal">That's how the best years begin: not with a grand plan, but with the two of you, and a list you actually live. Korby is out now for iPhone. Download it, add your first wish, and invite your person with one code.</p>
-      <div class="capture reveal" style="justify-content:center"><a class="btn btn-cream" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download on the App&nbsp;Store&nbsp;&rarr;</a></div>
-      <div class="fine reveal">14 days free &middot; then $29.99/year &middot; monthly &amp; lifetime available</div>
-    </div>
+    <h2>It only takes one of you to start.</h2>
+    <p>Create the list, invite your person with a six-character code, and put a date on the first thing. That is the setup.</p>
+    <a class="btn btn-cream" href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download for iPhone</a>
+    <p class="fineprint">14 days free · then $29.99/year · monthly and lifetime also available</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+</main>
+
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="logo" style="font-size:20px"><span class="heart">&#9829;</span> Korby</div>
-        <p>The shared bucket list for two: collect what you want to do together, plan it, and keep every memory.</p>
+        <div class="lockup">
+          <img src="korby-icon-180.png" width="30" height="30" alt="" decoding="async" style="width:30px;height:30px">
+          <span class="word" style="font-size:20px">Korby</span>
+        </div>
+        <p>The shared bucket list for two. Collect it, plan it, keep it.</p>
       </div>
       <div class="foot-cols">
-        <div class="foot-col"><h4>Product</h4><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download the app</a></div>
-        <div class="foot-col"><h4>Legal</h4><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a></div>
-        <div class="foot-col"><h4>Support</h4><a href="mailto:support@getkorby.com">support@getkorby.com</a></div>
+        <div class="foot-col">
+          <h3>Product</h3>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="https://apps.apple.com/us/app/korby-couple-bucket-list/id6770281862">Download for iPhone</a>
+        </div>
+        <div class="foot-col">
+          <h3>Legal</h3>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+        </div>
+        <div class="foot-col">
+          <h3>Support</h3>
+          <a href="mailto:support@getkorby.com">support@getkorby.com</a>
+        </div>
       </div>
     </div>
     <div class="foot-base">
-      <span>&copy; <span id="y"></span> Korby</span>
+      <span>&copy; <span id="y">2026</span> Korby</span>
       <span>Made for two.</span>
     </div>
   </div>
@@ -533,44 +588,68 @@
   document.documentElement.classList.add('js');
   var y=document.getElementById('y'); if(y) y.textContent=new Date().getFullYear();
 
-  // Header shrink + scroll progress
-  var hdr=document.getElementById('hdr'), prog=document.getElementById('progress');
-  function onScroll(){
-    var st=window.pageYOffset||document.documentElement.scrollTop;
-    if(hdr) hdr.classList.toggle('scrolled', st>8);
-    var h=document.documentElement.scrollHeight-window.innerHeight;
-    if(prog) prog.style.width=(h>0?(st/h*100):0)+'%';
+  var hdr=document.getElementById('hdr');
+  if(hdr){
+    var onScroll=function(){hdr.classList.toggle('scrolled',(window.pageYOffset||document.documentElement.scrollTop)>6);};
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
   }
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  // Reveal on scroll + count-up + thread draw
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      e.target.classList.add('in');
-      var _cn=e.target.matches('[data-count]')?e.target:e.target.querySelector('[data-count]'); if(_cn) countUp(_cn);
-      io.unobserve(e.target);
+  // Journey slideshow. Markup renders all three panels; JS turns them into tabs.
+  // Without JS every panel stays on the page, stacked, exactly as before.
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var panels=[].slice.call(document.querySelectorAll('.slides .slide'));
+  var dots=[];
+  if(tabs.length && tabs.length===panels.length){
+    var cur=0;
+    var select=function(i,focus){
+      i=(i+panels.length)%panels.length;
+      cur=i;
+      tabs.forEach(function(t,n){
+        t.setAttribute('aria-selected', n===i?'true':'false');
+        t.tabIndex = n===i?0:-1;
+      });
+      panels.forEach(function(pnl,n){
+        if(n===i){ pnl.removeAttribute('hidden'); reflow(pnl); }
+        else pnl.setAttribute('hidden','');
+      });
+      dots.forEach(function(d,n){ d.setAttribute('aria-current', n===i?'true':'false'); });
+      if(focus) tabs[i].focus();
+    };
+    // restart the entrance animation on each change
+    var reflow=function(pnl){
+      var kids=pnl.querySelectorAll('.copy,.shot');
+      [].forEach.call(kids,function(k){ k.style.animation='none'; void k.offsetWidth; k.style.animation=''; });
+    };
+    tabs.forEach(function(t,n){
+      t.addEventListener('click',function(){ select(n); });
+      t.addEventListener('keydown',function(e){
+        var k=e.key;
+        if(k==='ArrowRight'||k==='ArrowDown'){ e.preventDefault(); select(cur+1,true); }
+        else if(k==='ArrowLeft'||k==='ArrowUp'){ e.preventDefault(); select(cur-1,true); }
+        else if(k==='Home'){ e.preventDefault(); select(0,true); }
+        else if(k==='End'){ e.preventDefault(); select(panels.length-1,true); }
+      });
     });
-  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  var tl=document.querySelector('.thread-list'); if(tl) io.observe(tl);
+    dots.forEach(function(d,n){ d.addEventListener('click',function(){ select(n); }); });
 
-  function countUp(el){
-    var target=parseInt(el.getAttribute('data-count'),10)||0;
-    var suffix=el.getAttribute('data-suffix')||'';
-    var start=null, dur=1100;
-    function tick(now){
-      if(start===null) start=now;
-      var p=Math.min((now-start)/dur,1);
-      var val=Math.round((1-Math.pow(1-p,3))*target);
-      el.textContent=val+suffix;
-      if(p<1) requestAnimationFrame(tick);
+    // horizontal swipe, but never steal a vertical scroll
+    var sx=0, sy=0, tracking=false, slides=document.getElementById('slides');
+    if(slides){
+      slides.addEventListener('touchstart',function(e){
+        if(e.touches.length!==1) return;
+        sx=e.touches[0].clientX; sy=e.touches[0].clientY; tracking=true;
+      },{passive:true});
+      slides.addEventListener('touchend',function(e){
+        if(!tracking) return; tracking=false;
+        var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
+        if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)*1.5) select(cur + (dx<0?1:-1));
+      },{passive:true});
     }
-    requestAnimationFrame(tick);
+    select(0);
   }
 
-  // Subtle mouse-tilt parallax on hero phone + float cards
-  var stage=document.querySelector('.stage'), front=document.getElementById('tilt'),
+  // Hero: pointer tilt on the phone and the two detail cards (desktop, motion allowed)
+  var stage=document.getElementById('stage'), front=document.getElementById('tilt'),
       cardA=document.querySelector('.floatcard.a'), cardB=document.querySelector('.floatcard.b');
   if(stage && window.matchMedia('(min-width:981px)').matches && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
     stage.addEventListener('pointermove',function(ev){
