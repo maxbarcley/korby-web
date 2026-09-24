@@ -1,0 +1,96 @@
+/* Korby blog: shares tokens with index.html */
+:root{
+  --ivory:#F3EFE6; --oat:#EBE4D9; --surface:#FCFAF5;
+  --ink:#2B1B1E; --inkSoft:#614F52; --inkFaint:#6B595D;
+  --line:#DDD5C7; --lineSoft:#E7E1D5;
+  --wine:#7A3B4F; --wineDeep:#5E2C3C; --roseWash:#EEDDE1;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:var(--wine)}
+img{max-width:100%}
+h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.15;font-optical-sizing:auto}
+.label{font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--wine)}
+a:focus-visible,.btn:focus-visible{outline:2.5px solid var(--wine);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--wine);color:#fff;padding:12px 18px;z-index:100}
+.skip:focus{left:8px;top:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;font-weight:600;font-size:15.5px;padding:13px 24px;border-radius:8px;text-decoration:none;transition:background .18s ease}
+.btn-primary{background:var(--wine);color:#fff}
+.btn-primary:hover{background:var(--wineDeep)}
+
+header{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.94);border-bottom:1px solid var(--line)}
+@supports (backdrop-filter:blur(12px)){header{background:rgba(243,239,230,.8);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px)}}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.lockup{display:flex;align-items:center;gap:11px;text-decoration:none}
+.lockup img{width:34px;height:34px;border-radius:8px;display:block;box-shadow:0 1px 2px rgba(43,27,30,.22)}
+.lockup .word{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);letter-spacing:-0.015em;line-height:1}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a.navlink{font-size:14.5px;font-weight:600;color:var(--inkSoft);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.nav-links a.navlink:hover{color:var(--wine)}
+.nav .btn{min-height:44px;padding:10px 18px;font-size:14.5px}
+@media(max-width:640px){.nav-links a.navlink:first-child{display:none}.nav-links{gap:16px}.nav .btn{padding:9px 13px;font-size:14px}}
+@media(max-width:380px){.lockup .word{display:none}}
+
+/* Article */
+.post{max-width:700px;margin:0 auto;padding:40px 0 72px}
+.crumbs{font-size:14px;color:var(--inkFaint);margin-bottom:18px}
+.crumbs a{color:var(--inkSoft);text-decoration:none;font-weight:600}
+.crumbs a:hover{color:var(--wine)}
+.post h1{font-size:clamp(32px,5vw,50px)}
+.meta{font-size:14px;color:var(--inkFaint);margin-top:14px}
+.prose{margin-top:32px;font-size:18px;line-height:1.7}
+.prose p{margin:0 0 20px}
+.prose h2{font-size:clamp(24px,3vw,31px);margin:52px 0 18px;scroll-margin-top:90px}
+.prose h3{font-size:21px;margin:34px 0 12px}
+.prose ol,.prose ul{margin:0 0 24px;padding-left:1.4em}
+.prose li{margin:0 0 12px;padding-left:.2em}
+.prose ol li::marker{color:var(--wine);font-weight:600;font-family:var(--serif)}
+.prose ul li::marker{color:var(--wine)}
+.prose strong{font-weight:650;color:var(--ink)}
+.prose blockquote{margin:0 0 24px;padding:18px 22px;background:var(--surface);border-left:3px solid var(--wine);border-radius:0 8px 8px 0;font-family:var(--serif);font-size:19px;line-height:1.5}
+.prose blockquote p{margin:0}
+.prose code{font-size:.9em;background:var(--oat);padding:1px 5px;border-radius:4px}
+
+.korby-note{display:grid;grid-template-columns:132px 1fr;gap:24px;align-items:center;margin:32px 0;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.korby-note img{width:132px;height:auto;border-radius:18px;box-shadow:0 10px 24px rgba(60,30,40,.18);display:block}
+.korby-note p{font-size:16.5px;line-height:1.6;margin:0 0 14px;color:var(--inkSoft)}
+.korby-note p.label{margin:0 0 6px;color:var(--wine);font-size:13px}
+.korby-note .btn{min-height:44px;padding:10px 18px;font-size:15px}
+@media(max-width:560px){.korby-note{grid-template-columns:1fr;text-align:left}.korby-note img{width:120px}}
+
+.related{margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
+.related h2{font-size:24px;margin-bottom:14px}
+.related ul{list-style:none}
+.related li{padding:14px 0;border-bottom:1px solid var(--lineSoft)}
+.related a{font-family:var(--serif);font-size:19px;font-weight:600;text-decoration:none;color:var(--ink)}
+.related a:hover{color:var(--wine)}
+.related span{display:block;font-size:15px;color:var(--inkSoft);margin-top:4px}
+
+/* Blog index */
+.blog-head{max-width:700px;margin:0 auto;padding:48px 0 12px}
+.blog-head h1{font-size:clamp(32px,5vw,50px);margin-top:8px}
+.blog-head .lead{font-size:18px;color:var(--inkSoft);margin-top:14px;max-width:52ch}
+.cards{list-style:none;max-width:700px;margin:24px auto 80px}
+.cards li{border-top:1px solid var(--line)}
+.cards li:last-child{border-bottom:1px solid var(--line)}
+.cards a{display:block;padding:26px 0;text-decoration:none;color:var(--ink)}
+.cards h2{font-size:clamp(22px,2.6vw,27px)}
+.cards a:hover h2{color:var(--wine)}
+.cards p{color:var(--inkSoft);margin-top:8px;font-size:16.5px}
+.cards .meta{display:block;margin-top:10px}
+
+footer{background:var(--oat);border-top:1px solid var(--line);padding:44px 0 26px}
+.foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:34px}
+.foot-brand{max-width:30ch}
+.foot-brand .lockup img{width:30px;height:30px}
+.foot-brand .lockup .word{font-size:20px;display:inline}
+.foot-brand p{font-size:14px;color:var(--inkSoft);margin-top:12px}
+.foot-cols{display:flex;gap:52px;flex-wrap:wrap}
+.foot-col h3{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:0}
+.foot-col a{display:block;font-size:14.5px;color:var(--inkSoft);text-decoration:none;padding:6px 0}
+.foot-col a:hover{color:var(--wine)}
+.foot-base{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--inkFaint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:600px){.foot-grid{flex-direction:column;gap:26px}.foot-cols{gap:36px}}
