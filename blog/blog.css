@@ -53,6 +53,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.94);border-
 .prose blockquote{margin:0 0 24px;padding:18px 22px;background:var(--surface);border-left:3px solid var(--wine);border-radius:0 8px 8px 0;font-family:var(--serif);font-size:19px;line-height:1.5}
 .prose blockquote p{margin:0}
 .prose code{font-size:.9em;background:var(--oat);padding:1px 5px;border-radius:4px}
+.table-scroll{overflow-x:auto;margin:0 0 28px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.prose table{width:100%;border-collapse:collapse;font-size:15.5px;line-height:1.45;min-width:560px}
+.prose th,.prose td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--lineSoft)}
+.prose thead th{font-weight:650;color:var(--ink);background:var(--oat)}
+.prose tbody tr:last-child td{border-bottom:0}
+.prose td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
 
 .korby-note{display:grid;grid-template-columns:132px 1fr;gap:24px;align-items:center;margin:32px 0;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .korby-note img{width:132px;height:auto;border-radius:18px;box-shadow:0 10px 24px rgba(60,30,40,.18);display:block}
