@@ -58,7 +58,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.94);border-
 .prose th,.prose td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--lineSoft)}
 .prose thead th{font-weight:650;color:var(--ink);background:var(--oat)}
 .prose tbody tr:last-child td{border-bottom:0}
-.prose td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.prose td:first-child{font-weight:600;color:var(--ink)}
+.prose table.matrix td:first-child{min-width:200px}
+.prose td:first-child{min-width:120px}
 
 .korby-note{display:grid;grid-template-columns:132px 1fr;gap:24px;align-items:center;margin:32px 0;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .korby-note img{width:132px;height:auto;border-radius:18px;box-shadow:0 10px 24px rgba(60,30,40,.18);display:block}
@@ -102,3 +104,10 @@ footer{background:var(--oat);border-top:1px solid var(--line);padding:44px 0 26p
 @media(max-width:600px){.foot-grid{flex-direction:column;gap:26px}.foot-cols{gap:36px}}
 .prose hr.sep{border:0;border-top:1px solid var(--line);margin:40px 0 0}
 .prose hr.sep + .korby-note{margin-top:28px}
+.prose table.matrix{min-width:760px}
+.prose table.matrix th:not(:first-child),.prose table.matrix td:not(:first-child){text-align:center}
+.prose table.matrix td.y{color:var(--wine);font-weight:700}
+.prose table.matrix td.d{color:var(--inkFaint)}
+.prose table.matrix td.n{color:var(--inkSoft)}
+.prose table.matrix th:nth-child(2),.prose table.matrix td:nth-child(2){background:var(--roseWash)}
+.prose .table-note{font-size:14.5px;color:var(--inkSoft);margin:-14px 0 28px}
