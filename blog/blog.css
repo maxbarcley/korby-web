@@ -124,3 +124,12 @@ footer{background:var(--oat);border-top:1px solid var(--line);padding:44px 0 26p
 .prose .inline-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:4px 0 36px}
 .prose .inline-cta .btn{color:#fff;text-decoration:none}
 .prose .inline-cta span{font-size:15px;color:var(--inkSoft)}
+.prose tr.pick td{background:var(--roseWash)}
+.picker{margin:8px 0 36px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.picker-title{font-family:var(--serif);font-size:21px;font-weight:600;margin:0 0 14px!important}
+.picker-q{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:0 0 12px}
+.picker-q>span{width:100%;font-size:13px;font-weight:650;color:var(--wine)}
+.picker label{font-size:15px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--ivory);cursor:pointer}
+.picker label:has(input:checked){border-color:var(--wine);background:var(--roseWash)}
+.picker input{accent-color:var(--wine)}
+.picker-result{margin:16px 0 0!important;padding-top:14px;border-top:1px solid var(--lineSoft);font-size:16.5px}
