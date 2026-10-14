@@ -133,3 +133,4 @@ footer{background:var(--oat);border-top:1px solid var(--line);padding:44px 0 26p
 .picker label:has(input:checked){border-color:var(--wine);background:var(--roseWash)}
 .picker input{accent-color:var(--wine)}
 .picker-result{margin:16px 0 0!important;padding-top:14px;border-top:1px solid var(--lineSoft);font-size:16.5px}
+.picker-also{display:block;margin-top:8px;font-size:15px;color:var(--inkSoft)}

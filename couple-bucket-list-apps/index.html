@@ -75,28 +75,26 @@
 (function(){
   var root=document.getElementById('picker'); if(!root) return;
   var out=root.querySelector('.picker-result');
+  var K='<a href="#korby">Korby</a>';
+  function r(pick,why,alsoName,alsoWhy){return '<strong>Our pick: '+pick+'.</strong> '+why+(alsoName?'<span class="picker-also">Also good: '+alsoName+'. '+alsoWhy+'</span>':'');}
   var R={
-    korby:'<strong>Our pick: <a href="#korby">Korby</a>.</strong> It’s built for exactly this: a date and countdown on the idea you pick, a shared checklist, and the photos afterwards.',
-    korbyFree:'<strong>Start free with <a href="#cupla">Cupla’s</a> date planner</strong>, or <a href="#apple-reminders">Apple Reminders</a> with a due date on every idea. If you want ideas, dates, prep and memories on one plan, <a href="#korby">Korby</a> is free for 14 days.',
-    cupla:'<strong>Our pick: <a href="#cupla">Cupla</a>.</strong> Seeing both calendars side by side solves the “when” first.',
-    cuplaFree:'<strong>Our pick: <a href="#cupla">Cupla</a>.</strong> Its free plan already shows both calendars side by side, with a limited window of your partner’s items.',
-    lovewick:'<strong>Our pick: <a href="#lovewick">Lovewick</a></strong> for its 750+ ideas. If you also want a prep checklist and a countdown on every plan, <a href="#korby">Korby</a> starts you with 100+ ideas.',
-    lovewickFree:'<strong>Our pick: <a href="#lovewick">Lovewick</a>.</strong> Its date ideas are free to browse.',
-    notes:'<strong>Our pick: <a href="#apple-notes">Apple Notes</a>.</strong> One shared checklist, nothing to install.',
-    keep:'<strong>Our pick: <a href="#google-keep">Google Keep</a>.</strong> It works on both of your phones for free. (Korby is iPhone-only for now.)',
-    cuplaDoing:'<strong>Our pick: <a href="#cupla">Cupla</a>.</strong> It runs on iPhone and Android, has a free plan, and its date planner nudges you when it’s been a while. (Korby is iPhone-only for now.)',
-    cuplaMixed:'<strong>Our pick: <a href="#cupla">Cupla</a>.</strong> It runs on iPhone and Android and has a free plan.',
-    lovewickMixed:'<strong>Our pick: <a href="#lovewick">Lovewick</a>.</strong> It runs on iPhone and Android.'
+    'ios-doing-paid':r(K,'It’s built for exactly this: a date and countdown on the idea you pick, a shared checklist, and the photos afterwards.'),
+    'ios-doing-free':r(K,'Try it free for 14 days: give one idea a date, split the prep, and see if it finally happens.','<a href="#apple-reminders">Apple Reminders</a>','Free, if you’d rather just put a due date on every idea.'),
+    'ios-time-paid':r(K,'Once you find an evening, give one idea that date: it counts down on both phones and comes with a shared checklist. Pair it with a shared iCloud calendar for your schedules, which is free.','<a href="#cupla">Cupla</a>','If coordinating two calendars is the whole problem.'),
+    'ios-time-free':r('<a href="#cupla">Cupla</a>','Its free plan shows both calendars side by side, with a limited window of your partner’s items.',K,'Free for 14 days, for when you want the evening you found to carry a plan, a checklist and the photos.'),
+    'ios-ideas-paid':r(K,'Start from 100+ ideas across ten categories, and every one you pick gets a date, a countdown and a checklist.','<a href="#lovewick">Lovewick</a>','If you want 750+ ideas and conversation questions.'),
+    'ios-ideas-free':r(K,'Free for 14 days, with 100+ ideas built in. Our free <a href="/couples-bucket-list-ideas/">list of 100 couples bucket list ideas</a> gives you more.','<a href="#lovewick">Lovewick</a>','Its date ideas are free to browse.'),
+    'ios-list-paid':r(K,'A shared list for both phones that grows up with you: any item can get a date, a checklist and a memory when you’re ready.','<a href="#apple-notes">Apple Notes</a>','Free, if a plain checklist is truly all you need.'),
+    'ios-list-free':r('<a href="#apple-notes">Apple Notes</a>','One shared checklist, nothing to install.',K,'Free for 14 days, for when the list gets long and nothing on it happens.'),
+    'mixed-doing':r('<a href="#cupla">Cupla</a>','It runs on iPhone and Android, has a free plan, and its date planner nudges you when it’s been a while. (Korby is iPhone-only for now.)'),
+    'mixed-time':r('<a href="#cupla">Cupla</a>','It runs on iPhone and Android and has a free plan. (Korby is iPhone-only for now.)'),
+    'mixed-ideas':r('<a href="#lovewick">Lovewick</a>','It runs on iPhone and Android. (Korby is iPhone-only for now.)'),
+    'mixed-list':r('<a href="#google-keep">Google Keep</a>','It works on both of your phones for free. (Korby is iPhone-only for now.)')
   };
   function val(n){var e=root.querySelector('input[name="'+n+'"]:checked');return e?e.value:'';}
   function pick(){
-    var p=val('phones'),q=val('problem'),b=val('budget'),k;
-    if(p==='mixed'){k=q==='time'?'cuplaMixed':q==='ideas'?'lovewickMixed':q==='doing'?'cuplaDoing':'keep';}
-    else if(q==='doing'){k=b==='free'?'korbyFree':'korby';}
-    else if(q==='time'){k=b==='free'?'cuplaFree':'cupla';}
-    else if(q==='ideas'){k=b==='free'?'lovewickFree':'lovewick';}
-    else {k='notes';}
-    out.innerHTML=R[k];
+    var p=val('phones'),q=val('problem'),b=val('budget');
+    out.innerHTML=R[p==='mixed'?'mixed-'+q:'ios-'+q+'-'+b];
   }
   root.addEventListener('change',pick); pick();
 })();
